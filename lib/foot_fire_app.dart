@@ -1,9 +1,10 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:foot_fire/core/routing/app_routing.dart';
+import 'package:foot_fire/core/routing/routes.dart';
 
 class FootFireApp extends StatelessWidget {
-  const FootFireApp({super.key});
+  final AppRouting appRouter;
+  const FootFireApp({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {
@@ -11,18 +12,10 @@ class FootFireApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black26),
         useMaterial3: true,
       ),
-      home: const Scaffold(
-        body: Center(
-          child: Text(
-            'FOOT FIRE',
-            style: TextStyle(fontSize: 40),
-          ),
-        ),
-      ),
+      initialRoute: Routes.splashScreen,
+      onGenerateRoute: appRouter.generateRoute,
     );
   }
 }
