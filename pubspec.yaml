@@ -41,8 +41,23 @@ dependencies:
   flutter_screenutil: ^5.9.3
   #Flutter library to load and cache network images. Can also be used with placeholder and error widgets.
   cached_network_image: ^3.4.1
- 
-
+  #for manage api and networking
+  dio: ^5.6.0
+  retrofit: ^4.2.0
+  retrofit_generator: ^8.2.0
+  #Pretty Dio logger is a Dio interceptor that logs network calls in a pretty, easy to read format 
+  pretty_dio_logger: ^1.4.0
+  #Automatically generate code for converting to and from JSON by annotating Dart classes
+  json_serializable: ^6.8.0
+  json_annotation: ^4.9.0
+  #A build system for Dart code generation and modular compilation.
+  build_runner: ^2.4.12
+  #for statemangement
+  flutter_bloc: ^8.1.6
+  #for dependancy injection.
+  get_it: ^7.7.0
+  #for handle errors 
+  dartz: ^0.10.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
