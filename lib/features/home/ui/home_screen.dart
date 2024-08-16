@@ -4,12 +4,13 @@ import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
 import 'package:foot_fire/features/home/logic/cubit/country_cubit.dart';
+import 'package:foot_fire/features/home/ui/widgets/countries_list_bloc_builder.dart';
+import 'package:foot_fire/features/home/ui/widgets/countries_list_shimmer_loading.dart';
 import 'package:foot_fire/features/home/ui/widgets/country_list_item.dart';
 import 'package:foot_fire/features/home/ui/widgets/short_video_container.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,31 +51,7 @@ class HomeScreen extends StatelessWidget {
                     style: AppTextStyles.font24WhiteW700,
                   ),
                   verticalSpace(8),
-                  BlocBuilder<CountryCubit,CountryState>(
-                    builder: (context, state) {
-                      if (state is CountriesListLoaded) {
-                      return  ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return CountryListItem(
-                              isSelected:false,
-                              name: state.countries.allCountries[index].countryName,
-                              flagImageUrl:
-                                  state.countries.allCountries[index].flagImageUrl,
-                              onPressed: () {
-                              },
-                            );
-                          },
-                          itemCount: state.countries.allCountries.length,
-                        );
-                      } else if (state is CountriesListError) {
-                       return Center(child: Text("Error loading countries",style: AppTextStyles.font16WhiteW500,));
-                      }else{
-                        return CircularProgressIndicator(); // Show loading indicator while waiting for data to load.
-                      }
-                    },
-                  ),
+                  const CountriesListBlocBuilder(),
                 ],
               ),
             ),

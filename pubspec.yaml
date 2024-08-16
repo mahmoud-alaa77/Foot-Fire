@@ -58,6 +58,11 @@ dependencies:
   get_it: ^7.7.0
   #for handle errors 
   dartz: ^0.10.1
+  # for provides an easy way to add shimmer effect in Flutter project
+  shimmer: ^3.0.0
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

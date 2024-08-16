@@ -7,6 +7,8 @@ class CountryCubit extends Cubit<CountryState> {
   final HomeRepo _homeRepo;
   CountryCubit(this._homeRepo) : super(CountryInitial());
 
+  List<bool> buttonStates = [];
+
   getAllCountries() async {
     emit(CountriesListLoading());
 
@@ -15,7 +17,13 @@ class CountryCubit extends Cubit<CountryState> {
     result.fold((failure) {
       emit(CountriesListError(error: failure.errorMessage));
     }, (countriesList) {
-      emit(CountriesListLoaded(countries: countriesList));
+      buttonStates =
+          List.generate(countriesList.allCountries.length, (_) => false);
+      emit(CountriesListLoaded(countries: countriesList, buttonStates));
     });
+  }
+
+  void changeButtonState(int index) {
+    buttonStates[index] = !buttonStates[index];
   }
 }

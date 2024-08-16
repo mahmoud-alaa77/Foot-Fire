@@ -8,8 +8,8 @@ final class CountriesListLoading extends CountryState {}
 
 final class CountriesListLoaded extends CountryState {
   final CountryModel countries;
-
-  CountriesListLoaded({required this.countries});
+  final List<bool> buttonStates;
+  CountriesListLoaded(this.buttonStates, {required this.countries});
 }
 
 final class CountriesListError extends CountryState {
@@ -17,3 +17,5 @@ final class CountriesListError extends CountryState {
 
   CountriesListError({required this.error});
 }
+
+

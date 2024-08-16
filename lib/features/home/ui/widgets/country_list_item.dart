@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
@@ -32,25 +33,23 @@ class CountryListItem extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.network(
-                flagImageUrl,
+
+              CachedNetworkImage(imageUrl: flagImageUrl,
                 width: 50,
                 height: 50,
-                fit: BoxFit.cover,
-              ),
+                fit: BoxFit.cover,),
+              
               horizontalSpace(8),
               SizedBox(
                 width: 220.w,
-                child: Flexible(
-                  child: Text(
-                    name,
-                    style: AppTextStyles.font18WhiteW700,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                child: Text(
+                  name,
+                  style: AppTextStyles.font18WhiteW700,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-              const Spacer(),
+              
               IconButton(
                   onPressed: onPressed,
                   icon: const Icon(

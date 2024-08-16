@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
@@ -14,8 +15,9 @@ class LeaguesListItem extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          Image.network(
-            "https://www.thesportsdb.com/images/media/league/badge/dsnjpz1679951317.png",
+          CachedNetworkImage(
+            imageUrl:
+                "https://www.thesportsdb.com/images/media/league/badge/dsnjpz1679951317.png",
             width: 35.w,
             height: 35.h,
           ),
