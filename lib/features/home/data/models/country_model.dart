@@ -1,19 +1,29 @@
-
 import 'package:json_annotation/json_annotation.dart';
 part 'country_model.g.dart';
+
 @JsonSerializable()
-class CountryModel{
+class CountryModel {
+  @JsonKey(name: "countries")
+  final List<Country> allCountries;
 
-@JsonKey(name: "name_en")
-final String countryName;
-@JsonKey(name: "flag_url_32")
-final String flagImageUrl;
+  factory CountryModel.fromJson(Map<String, dynamic> json) =>
+      _$CountryModelFromJson(json);
 
-  CountryModel({required this.countryName, required this.flagImageUrl});
+  CountryModel({required this.allCountries});
 
-factory CountryModel.fromJson(Map<String, dynamic> json) => _$CountryModelFromJson(json);
-
-  /// Connect the generated [_$PersonToJson] function to the `toJson` method.
   Map<String, dynamic> toJson() => _$CountryModelToJson(this);
+}
 
+@JsonSerializable()
+class Country {
+  @JsonKey(name: "name_en")
+  final String countryName;
+  @JsonKey(name: "flag_url_32")
+  final String flagImageUrl;
+  Country({required this.countryName, required this.flagImageUrl});
+
+  factory Country.fromJson(Map<String, dynamic> json) =>
+      _$CountryFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CountryToJson(this);
 }

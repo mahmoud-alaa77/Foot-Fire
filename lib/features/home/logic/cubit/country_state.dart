@@ -7,7 +7,7 @@ final class CountryInitial extends CountryState {}
 final class CountriesListLoading extends CountryState {}
 
 final class CountriesListLoaded extends CountryState {
-  final List<CountryModel> countries;
+  final CountryModel countries;
 
   CountriesListLoaded({required this.countries});
 }

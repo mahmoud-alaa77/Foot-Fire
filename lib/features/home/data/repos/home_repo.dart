@@ -10,7 +10,7 @@ class HomeRepo {
 
   HomeRepo(this._apiServices);
 
-  Future<Either<Failure, List<CountryModel>>> getAllCountries() async {
+  Future<Either<Failure, CountryModel>> getAllCountries() async {
     try {
       var response = await _apiServices.getAllCountries();
 

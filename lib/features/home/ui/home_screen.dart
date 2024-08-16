@@ -1,33 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
+import 'package:foot_fire/features/home/logic/cubit/country_cubit.dart';
 import 'package:foot_fire/features/home/ui/widgets/country_list_item.dart';
 import 'package:foot_fire/features/home/ui/widgets/short_video_container.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  List<bool> _buttonStates = [];
-
-  @override
-  void initState() {
-    super.initState();
-    // Initialize button states with default values (e.g., false)
-    _buttonStates = List.generate(
-        16, (_) => false); // Replace 16 with your desired number of buttons
-  }
-
-  void _changeButtonColor(int index) {
-    setState(() {
-      _buttonStates[index] = !_buttonStates[index];
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +25,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.search,color: Colors.white,),
+            icon: const Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
             onPressed: () {},
           ),
         ],
@@ -65,21 +50,30 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: AppTextStyles.font24WhiteW700,
                   ),
                   verticalSpace(8),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return CountryListItem(
-                        isSelected: _buttonStates[index],
-                        name: "Egypt",
-                        flagImageUrl:
-                            "https://www.thesportsdb.com/images/icons/flags/shiny/32/Belgium.png",
-                        onPressed: () {
-                          _changeButtonColor(index);
-                        },
-                      );
+                  BlocBuilder<CountryCubit,CountryState>(
+                    builder: (context, state) {
+                      if (state is CountriesListLoaded) {
+                      return  ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return CountryListItem(
+                              isSelected:false,
+                              name: state.countries.allCountries[index].countryName,
+                              flagImageUrl:
+                                  state.countries.allCountries[index].flagImageUrl,
+                              onPressed: () {
+                              },
+                            );
+                          },
+                          itemCount: state.countries.allCountries.length,
+                        );
+                      } else if (state is CountriesListError) {
+                       return Center(child: Text("Error loading countries",style: AppTextStyles.font16WhiteW500,));
+                      }else{
+                        return CircularProgressIndicator(); // Show loading indicator while waiting for data to load.
+                      }
                     },
-                    itemCount: 16,
                   ),
                 ],
               ),

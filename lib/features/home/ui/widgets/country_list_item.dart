@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
@@ -38,9 +39,16 @@ class CountryListItem extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               horizontalSpace(8),
-              Text(
-                name,
-                style: AppTextStyles.font18WhiteW700,
+              SizedBox(
+                width: 220.w,
+                child: Flexible(
+                  child: Text(
+                    name,
+                    style: AppTextStyles.font18WhiteW700,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ),
               const Spacer(),
               IconButton(
@@ -67,4 +75,3 @@ class CountryListItem extends StatelessWidget {
     );
   }
 }
-

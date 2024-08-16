@@ -5,11 +5,11 @@ part 'country_state.dart';
 
 class CountryCubit extends Cubit<CountryState> {
   final HomeRepo _homeRepo;
-
   CountryCubit(this._homeRepo) : super(CountryInitial());
 
   getAllCountries() async {
     emit(CountriesListLoading());
+
     var result = await _homeRepo.getAllCountries();
 
     result.fold((failure) {
