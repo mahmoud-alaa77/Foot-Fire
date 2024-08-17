@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foot_fire/core/theming/app_colors.dart';
 
 class AppTextStyles {
   static  TextStyle font24WhiteW700 = TextStyle(
@@ -21,6 +22,11 @@ static  TextStyle font16WhiteW500 = TextStyle(
     color: Colors.white
   );
 
+static  TextStyle font14OrangeW400 = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.orangeColor
+  );
 
   static  TextStyle font24BlackW700 = TextStyle(
     fontSize: 24.sp,

@@ -13,7 +13,7 @@ class SplashScreen extends StatelessWidget {
       child: AnimatedSplashScreen(
         splash: Image.asset("assets/images/logo.png"),
         splashIconSize: 280,
-        backgroundColor: AppColors.darkGrayColor,
+        backgroundColor: AppColors.backGroundBlackColor,
         nextRoute: Routes.home,
         disableNavigation: false,
         duration: 400,
