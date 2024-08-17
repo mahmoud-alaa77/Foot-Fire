@@ -60,8 +60,8 @@ dependencies:
   dartz: ^0.10.1
   # for provides an easy way to add shimmer effect in Flutter project
   shimmer: ^3.0.0
-
-
+  #Toast Library for Flutter, Easily create toast messages in single line of code
+  toast: ^0.3.0
 
 dev_dependencies:
   flutter_test:
