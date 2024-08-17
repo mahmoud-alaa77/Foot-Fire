@@ -16,7 +16,7 @@ class FootFireApp extends StatelessWidget {
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(useMaterial3: true, fontFamily: "Margarine"),
-          initialRoute: Routes.splashScreen,
+          initialRoute: Routes.home,
           onGenerateRoute: appRouter.genrateRoute,
         );
       },

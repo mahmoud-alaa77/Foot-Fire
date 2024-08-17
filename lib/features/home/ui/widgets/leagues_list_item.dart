@@ -5,8 +5,10 @@ import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
 
 class LeaguesListItem extends StatelessWidget {
+  final String title;
+  final String leagueImageUrl;
   const LeaguesListItem({
-    super.key,
+    super.key, required this.title, required this.leagueImageUrl,
   });
 
   @override
@@ -17,14 +19,14 @@ class LeaguesListItem extends StatelessWidget {
         children: [
           CachedNetworkImage(
             imageUrl:
-                "https://www.thesportsdb.com/images/media/league/badge/dsnjpz1679951317.png",
+                leagueImageUrl,
             width: 35.w,
             height: 35.h,
           ),
           horizontalSpace(8),
           Flexible(
             child: Text(
-              "English Premier League",
+             title,
               style: AppTextStyles.font16WhiteW500,
             ),
           ),

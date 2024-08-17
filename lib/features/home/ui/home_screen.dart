@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
-import 'package:foot_fire/features/home/logic/cubit/country_cubit.dart';
 import 'package:foot_fire/features/home/ui/widgets/countries_list_bloc_builder.dart';
-import 'package:foot_fire/features/home/ui/widgets/countries_list_shimmer_loading.dart';
-import 'package:foot_fire/features/home/ui/widgets/country_list_item.dart';
 import 'package:foot_fire/features/home/ui/widgets/short_video_container.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

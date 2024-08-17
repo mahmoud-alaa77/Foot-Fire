@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
+import 'package:foot_fire/features/home/logic/cubit/league_cubit.dart';
 import 'package:foot_fire/features/home/ui/widgets/leagues_list_item.dart';
 
 class CountryListItem extends StatelessWidget {
@@ -11,15 +13,17 @@ class CountryListItem extends StatelessWidget {
   final String name;
   final String flagImageUrl;
   final bool isSelected;
+  final IconData icon;
   const CountryListItem(
       {super.key,
       this.onPressed,
       required this.name,
       required this.flagImageUrl,
-      required this.isSelected});
+      required this.isSelected, required this.icon});
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       margin: const EdgeInsetsDirectional.symmetric(horizontal: 4, vertical: 8),
       padding:
@@ -33,12 +37,12 @@ class CountryListItem extends StatelessWidget {
         children: [
           Row(
             children: [
-
-              CachedNetworkImage(imageUrl: flagImageUrl,
+              CachedNetworkImage(
+                imageUrl: flagImageUrl,
                 width: 50,
                 height: 50,
-                fit: BoxFit.cover,),
-              
+                fit: BoxFit.cover,
+              ),
               horizontalSpace(8),
               SizedBox(
                 width: 220.w,
@@ -49,23 +53,46 @@ class CountryListItem extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              
               IconButton(
                   onPressed: onPressed,
-                  icon: const Icon(
-                    Icons.keyboard_arrow_down,
+                  icon:  Icon(
+                    icon,
                     color: Colors.white,
                   ))
             ],
           ),
           isSelected
-              ? ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 5,
-                  separatorBuilder: (context, index) => verticalSpace(8),
-                  itemBuilder: (context, index) {
-                    return const LeaguesListItem();
+              ? BlocBuilder<LeagueCubit, LeagueState>(
+                  builder: (context, state) {
+                    if (state is LeaguesListLoaded) {
+                      if (state.leaguesList.countries == null) {
+                        return  Center(child: Text("No availble leagues",style: AppTextStyles.font14OrangeW400,),);
+                      } else {
+                        return ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: state.leaguesList.countries?.length ?? 0,
+                          separatorBuilder: (context, index) =>
+                              verticalSpace(8),
+                          itemBuilder: (context, index) {
+                            return LeaguesListItem(
+                              leagueImageUrl: state
+                                      .leaguesList.countries?[index].badgeImage
+                                      .toString() ??
+                                  "https://www.thesportsdb.com/images/media/league/badge/dsnjpz1679951317.png",
+                              title: state
+                                      .leaguesList.countries?[index].leagueName
+                                      .toString() ??
+                                  "------------",
+                            );
+                          },
+                        );
+                      }
+                    } else if (state is LeaguesListFailure) {
+                      return  Center(child: Text("Failed to load leagues",style: AppTextStyles.font14OrangeW400,));
+                    } else {
+                      return const SizedBox.shrink();
+                    }
                   },
                 )
               : const SizedBox.shrink()
