@@ -60,9 +60,12 @@ dependencies:
   dartz: ^0.10.1
   # for provides an easy way to add shimmer effect in Flutter project
   shimmer: ^3.0.0
+  # Flutter plugin for launching a URL. Supports web, phone, SMS, and email schemes
+  easy_url_launcher: ^0.0.7
   #Toast Library for Flutter, Easily create toast messages in single line of code
   toast: ^0.3.0
-
+  # A carousel slider widget, support infinite scroll and custom child widget.
+  carousel_slider: ^5.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
