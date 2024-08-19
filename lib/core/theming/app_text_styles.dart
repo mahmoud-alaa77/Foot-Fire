@@ -22,10 +22,21 @@ static  TextStyle font16WhiteW500 = TextStyle(
     color: Colors.white
   );
 
+  static  TextStyle font16BlackW300 = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w300,
+    color: Colors.black
+  );
+
 static  TextStyle font14OrangeW400 = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     color: AppColors.orangeColor
+  );
+  static  TextStyle font14GreyW400 = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.lightGrayColor
   );
 
   static  TextStyle font24BlackW700 = TextStyle(
