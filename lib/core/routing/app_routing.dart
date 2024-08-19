@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foot_fire/core/dependancy_injection/di.dart';
 import 'package:foot_fire/core/routing/routes.dart';
+import 'package:foot_fire/features/home/data/models/league_model.dart';
 import 'package:foot_fire/features/home/logic/cubit/country_cubit.dart';
 import 'package:foot_fire/features/home/logic/cubit/league_cubit.dart';
 import 'package:foot_fire/features/home/ui/home_screen.dart';
+import 'package:foot_fire/features/league_main_screen/ui/league_main_screen.dart';
 import 'package:foot_fire/features/splash/ui/splash_screen.dart';
 
 class AppRouting {
@@ -30,6 +32,13 @@ class AppRouting {
                     ),
                   ],
                   child: const HomeScreen(),
+                ));
+
+      case Routes.leagueMainScreen:
+        final LeagueModel arg = settings.arguments as LeagueModel;
+        return MaterialPageRoute(
+            builder: (context) => LeagueMainScreen(
+                  leagueModel: arg,
                 ));
       default:
         return null;
