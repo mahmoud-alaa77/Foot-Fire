@@ -5,6 +5,7 @@ import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/features/home/data/models/league_model.dart';
 import 'package:foot_fire/features/league_details/ui/league_details_screen.dart';
 import 'package:foot_fire/features/league_main_screen/ui/widgets/top_bar.dart';
+import 'package:foot_fire/features/table/ui/table_screen_body.dart';
 
 class LeagueMainScreen extends StatelessWidget {
   final LeagueModel leagueModel;
@@ -41,9 +42,7 @@ class LeagueMainScreen extends StatelessWidget {
                 LeagueDetailsScreenBody(
                   leagueModel: leagueModel,
                 ),
-                const Center(
-                  child: Text("!!!!!!!!"),
-                ),
+                const TableScreenBody(),
                 const Center(
                   child:  Text("!!!!!!!!"),
                 ),
