@@ -8,3 +8,14 @@ List<String> animatedImages = [
   "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnBqajd0bmdycnA5a2twNTIycHd1cDZ0cDl2MHg1am5vNTcwanZhZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gk7jSA1nSmNfXvGFRL/giphy.webp",
   "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdm9jbzdmdG80ZTJsZTZoenh4dHdpZnRoNHM0eTFncG9ia3RvaWR1ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1RzW2NT5inH9wFKx0k/giphy.webp"
 ];
+
+class MyImages {
+  static const String emptyImage =
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvf9wn1WvKWCp2eCV0atTl56ONzL6TyTPh702UMXqeHag2ZUG0YPch6-XWd2o4S_dK1J4&usqp=CAU";
+
+  static const String facebookImage = "assets/images/facebook.png";
+  static const String twitterImage = "assets/images/twitter.png";
+  static const String instagramImage = "assets/images/instgram.png";
+  static const String youTubeImage = "assets/images/youtube.png";
+  static const String webSiteImage = "assets/images/website.png";
+}
