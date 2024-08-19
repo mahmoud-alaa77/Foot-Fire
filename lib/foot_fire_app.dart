@@ -13,10 +13,12 @@ class FootFireApp extends StatelessWidget {
       designSize: const Size(392, 872),
       builder: (context, child) {
         return MaterialApp(
-          title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(useMaterial3: true, fontFamily: "Margarine"),
-          initialRoute: Routes.home,
+          theme: ThemeData(
+              useMaterial3: true,
+              fontFamily: "Margarine",
+              brightness: Brightness.dark),
+          initialRoute: Routes.splashScreen,
           onGenerateRoute: appRouter.genrateRoute,
         );
       },
