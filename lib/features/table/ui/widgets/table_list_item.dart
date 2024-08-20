@@ -42,34 +42,54 @@ class TableListItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Text(rank),
-          horizontalSpace(4),
-          CachedNetworkImage(
-            imageUrl: logoTeamImage,
-            fit: BoxFit.fill,
-            width: 20,
-            height: 20,
+          Expanded(
+            child: Row(
+              children: [
+                Text(rank),
+                horizontalSpace(4),
+                CachedNetworkImage(
+                  imageUrl: logoTeamImage,
+                  fit: BoxFit.fill,
+                  width: 20,
+                  height: 20,
+                ),
+                horizontalSpace(4),
+                Flexible(
+                  child: Text(
+                    teamName,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ),
+              ],
+            ),
           ),
-          horizontalSpace(4),
-          Expanded(child: Text(teamName)),
-          const Spacer(),
-          horizontalSpace(0),
-          Text(play),
-          horizontalSpace(30),
-          Text(win),
-          horizontalSpace(16),
-          Text(drawUp),
-          horizontalSpace(16),
-          Text(
-            lose,
-          ),
-          horizontalSpace(20),
-          Text("$goalsFor-$goalsAgainst"),
-          horizontalSpace(18),
-          Text(goalDifference),
-          horizontalSpace(24),
-          Text(points),
-          horizontalSpace(15),
+          Expanded(
+            child: Row(
+              children: [
+                Text(play),
+                horizontalSpace(26),
+                Text(win),
+                horizontalSpace(20),
+
+                Text(drawUp),
+                horizontalSpace(20),
+
+                Text(
+                  lose,
+                ),
+                horizontalSpace(28),
+
+                // Text("$goalsFor-$goalsAgainst"),
+                Text(goalDifference),
+                const Spacer(),
+
+                Text(points),
+                horizontalSpace(8)
+              ],
+            ),
+          )
         ],
       ),
     );

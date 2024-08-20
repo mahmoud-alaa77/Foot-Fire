@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foot_fire/core/helpers/constants.dart';
 import 'package:foot_fire/core/helpers/extentions.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/routing/routes.dart';
@@ -84,14 +85,18 @@ class CountryListItem extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
+                               
                                 context.pushNamed(Routes.leagueMainScreen,
-                                    arguments: state.leaguesList);
+                                    arguments: state.leaguesList.countries?[index]);
+                                    //  context.read<TableCubit>().getTableForLeague(
+                                    // "4328",
+                                    // "2024-2025");
                               },
                               child: LeaguesListItem(
                                 leagueImageUrl: state.leaguesList
                                         .countries?[index].badgeImage
                                         .toString() ??
-                                    "https://www.thesportsdb.com/images/media/league/badge/dsnjpz1679951317.png",
+                                    MyImages.emptyImage,
                                 title: state.leaguesList.countries?[index]
                                         .leagueName
                                         .toString() ??

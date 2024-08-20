@@ -7,7 +7,7 @@ import 'package:foot_fire/features/league_details/ui/widgets/more_details.dart';
 import 'package:foot_fire/features/league_details/ui/widgets/social_media_icons.dart';
 
 class LeagueDetailsScreenBody extends StatelessWidget {
-  final LeagueModel leagueModel;
+  final Countries leagueModel;
   const LeagueDetailsScreenBody({super.key, required this.leagueModel});
 
   @override
@@ -23,33 +23,33 @@ class LeagueDetailsScreenBody extends StatelessWidget {
                 verticalSpace(12),
                 DisplayImages(
                   imagesList: [
-                    leagueModel.countries?[0].posterImage,
-                    leagueModel.countries?[0].bannerImage,
-                    leagueModel.countries?[0].cupImage,
-                    leagueModel.countries?[0].badgeImage
+                    leagueModel.posterImage,
+                    leagueModel.bannerImage,
+                    leagueModel.cupImage,
+                    leagueModel.badgeImage
                   ],
                 ),
                 verticalSpace(12),
                 DescriptionWidget(
-                  desc: leagueModel.countries?[0].descriptionEN,
+                  desc: leagueModel.descriptionEN,
                 ),
                 verticalSpace(24),
                 MoreDetailsWidget(
                   keyText: "First Year:",
-                  valueText: leagueModel.countries?[0].firstYear ?? "",
+                  valueText: leagueModel.firstYear ?? "",
                 ),
                 verticalSpace(8),
                 MoreDetailsWidget(
                   keyText: "Current season:",
-                  valueText: leagueModel.countries?[0].currentSeason ?? "",
+                  valueText: leagueModel.currentSeason ?? "",
                 ),
                 verticalSpace(24),
                 SocialMediaIcons(
-                  facebookUrl: leagueModel.countries?[0].strFacebook,
-                  twitterUrl: leagueModel.countries?[0].strTwitter,
-                  instagramUrl: leagueModel.countries?[0].strInstagram,
-                  youTubeUrl: leagueModel.countries?[0].strYoutube,
-                  websiteUrl: leagueModel.countries?[0].strWebsite,
+                  facebookUrl: leagueModel.strFacebook,
+                  twitterUrl: leagueModel.strTwitter,
+                  instagramUrl: leagueModel.strInstagram,
+                  youTubeUrl: leagueModel.strYoutube,
+                  websiteUrl: leagueModel.strWebsite,
                 ),
                 verticalSpace(24),
               ],

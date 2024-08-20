@@ -8,6 +8,7 @@ import 'package:foot_fire/features/home/logic/cubit/league_cubit.dart';
 import 'package:foot_fire/features/home/ui/home_screen.dart';
 import 'package:foot_fire/features/league_main_screen/ui/league_main_screen.dart';
 import 'package:foot_fire/features/splash/ui/splash_screen.dart';
+import 'package:foot_fire/features/table/logic/cubit/table_cubit.dart';
 
 class AppRouting {
   Route? genrateRoute(RouteSettings settings) {
@@ -30,15 +31,20 @@ class AppRouting {
                     BlocProvider(
                       create: (context) => getIt<LeagueCubit>(),
                     ),
+                    BlocProvider(
+                  create: (context) => getIt<TableCubit>(),),
                   ],
                   child: const HomeScreen(),
                 ));
 
       case Routes.leagueMainScreen:
-        final LeagueModel arg = settings.arguments as LeagueModel;
+        final Countries arg = settings.arguments as Countries;
         return MaterialPageRoute(
-            builder: (context) => LeagueMainScreen(
-                  leagueModel: arg,
+            builder: (context) => BlocProvider(
+                  create: (context) => getIt<TableCubit>(),
+                  child: LeagueMainScreen(
+                    leagueModel: arg,
+                  ),
                 ));
       default:
         return null;

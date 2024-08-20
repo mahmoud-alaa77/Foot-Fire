@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foot_fire/core/helpers/constants.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/features/home/data/models/league_model.dart';
 import 'package:foot_fire/features/league_details/ui/league_details_screen.dart';
 import 'package:foot_fire/features/league_main_screen/ui/widgets/top_bar.dart';
+import 'package:foot_fire/features/table/logic/cubit/table_cubit.dart';
 import 'package:foot_fire/features/table/ui/table_screen_body.dart';
 
-class LeagueMainScreen extends StatelessWidget {
-  final LeagueModel leagueModel;
+class LeagueMainScreen extends StatefulWidget {
+  final Countries leagueModel;
   const LeagueMainScreen({super.key, required this.leagueModel});
+
+  @override
+  State<LeagueMainScreen> createState() => _LeagueMainScreenState();
+}
+
+class _LeagueMainScreenState extends State<LeagueMainScreen> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<TableCubit>(context).getTableForLeague(
+        widget.leagueModel.idLeague ?? "0",
+        widget.leagueModel.currentSeason ?? "0");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +37,13 @@ class LeagueMainScreen extends StatelessWidget {
                 leadingWidth: 0,
                 toolbarHeight: 120.h,
                 title: TopBar(
-                  countryName: leagueModel.countries?[0].leagueCountry ?? "",
-                  currentSeason: leagueModel.countries?[0].currentSeason ?? "",
-                  leagueLogo: leagueModel.countries?[0].badgeImage ??
+                  countryName:
+                      widget.leagueModel.leagueCountry ?? "",
+                  currentSeason:
+                      widget.leagueModel.currentSeason ?? "",
+                  leagueLogo: widget.leagueModel.badgeImage ??
                       MyImages.emptyImage,
-                  leagueName: leagueModel.countries?[0].leagueName ?? "",
+                  leagueName: widget.leagueModel.leagueName ?? "",
                 ),
                 backgroundColor: AppColors.darkGrayColor,
                 elevation: 0,
@@ -40,11 +57,11 @@ class LeagueMainScreen extends StatelessWidget {
               backgroundColor: AppColors.backGroundBlackColor,
               body: TabBarView(children: [
                 LeagueDetailsScreenBody(
-                  leagueModel: leagueModel,
+                  leagueModel: widget.leagueModel,
                 ),
                 const TableScreenBody(),
                 const Center(
-                  child:  Text("!!!!!!!!"),
+                  child: Text("!!!!!!!!"),
                 ),
                 const Center(
                   child: Text("!!!!!!!!"),
