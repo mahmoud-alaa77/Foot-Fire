@@ -33,6 +33,11 @@ static  TextStyle font14OrangeW400 = TextStyle(
     fontWeight: FontWeight.w400,
     color: AppColors.orangeColor
   );
+  static  TextStyle font22OrangeW400 = TextStyle(
+    fontSize: 22.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.orangeColor
+  );
   static  TextStyle font14GreyW400 = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
