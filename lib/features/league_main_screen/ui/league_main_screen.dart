@@ -6,6 +6,7 @@ import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/features/home/data/models/league_model.dart';
 import 'package:foot_fire/features/league_details/ui/league_details_screen.dart';
 import 'package:foot_fire/features/league_main_screen/ui/widgets/top_bar.dart';
+import 'package:foot_fire/features/matches/ui/matches_screen_body.dart';
 import 'package:foot_fire/features/table/logic/cubit/table_cubit.dart';
 import 'package:foot_fire/features/table/ui/table_screen_body.dart';
 
@@ -48,6 +49,7 @@ class _LeagueMainScreenState extends State<LeagueMainScreen> {
                 backgroundColor: AppColors.darkGrayColor,
                 elevation: 0,
                 bottom: TabBar(
+                  //isScrollable: true,
                   tabs: tabs,
                   dividerColor: Colors.white,
                   labelColor: AppColors.orangeColor,
@@ -63,9 +65,7 @@ class _LeagueMainScreenState extends State<LeagueMainScreen> {
                 const Center(
                   child: Text("!!!!!!!!"),
                 ),
-                const Center(
-                  child: Text("!!!!!!!!"),
-                ),
+                const MatchesScreenBody(),
               ]))),
     );
   }
@@ -75,5 +75,5 @@ List<Tab> tabs = [
   const Tab(text: 'Details'),
   const Tab(text: 'Table'),
   const Tab(text: 'Teams'),
-  const Tab(text: 'Events')
+  const Tab(text: 'Matches')
 ];
