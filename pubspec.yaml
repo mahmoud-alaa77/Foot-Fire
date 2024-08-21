@@ -66,6 +66,7 @@ dependencies:
   toast: ^0.3.0
   # A carousel slider widget, support infinite scroll and custom child widget.
   carousel_slider: ^5.0.0
+  intl: ^0.19.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
