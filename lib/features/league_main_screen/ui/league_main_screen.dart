@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foot_fire/core/helpers/constants.dart';
+import 'package:foot_fire/core/helpers/helper_functions.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/features/home/data/models/league_model.dart';
 import 'package:foot_fire/features/league_details/ui/league_details_screen.dart';
@@ -10,6 +11,7 @@ import 'package:foot_fire/features/league_matches/logic/cubit/match_cubit.dart';
 import 'package:foot_fire/features/league_matches/ui/matches_screen_body.dart';
 import 'package:foot_fire/features/league_table/logic/cubit/table_cubit.dart';
 import 'package:foot_fire/features/league_table/ui/table_screen_body.dart';
+import 'package:foot_fire/features/league_teams/logic/cubit/team_cubit.dart';
 import 'package:foot_fire/features/league_teams/ui/teams_screen_body.dart';
 
 class LeagueMainScreen extends StatefulWidget {
@@ -30,6 +32,7 @@ class _LeagueMainScreenState extends State<LeagueMainScreen> {
         BlocProvider.of<MatchCubit>(context).getTableForLeague(
         widget.leagueModel.idLeague ?? "0",
         widget.leagueModel.currentSeason ?? "0");
+         BlocProvider.of<TeamCubit>(context).getTeamsInLeague(HelperFunctions().replaceSpaces(widget.leagueModel.leagueName?? ""));
   }
 
   @override
