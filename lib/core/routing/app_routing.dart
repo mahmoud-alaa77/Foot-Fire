@@ -8,6 +8,7 @@ import 'package:foot_fire/features/home/logic/cubit/league_cubit.dart';
 import 'package:foot_fire/features/home/ui/home_screen.dart';
 import 'package:foot_fire/features/league_main_screen/ui/league_main_screen.dart';
 import 'package:foot_fire/features/league_matches/logic/cubit/match_cubit.dart';
+import 'package:foot_fire/features/league_teams/logic/cubit/team_cubit.dart';
 import 'package:foot_fire/features/splash/ui/splash_screen.dart';
 import 'package:foot_fire/features/league_table/logic/cubit/table_cubit.dart';
 
@@ -38,6 +39,9 @@ class AppRouting {
                     BlocProvider(
                       create: (context) => getIt<MatchCubit>(),
                     ),
+                    BlocProvider(
+                      create: (context) => getIt<TeamCubit>(),
+                    ),
                   ],
                   child: const HomeScreen(),
                 ));
@@ -52,6 +56,9 @@ class AppRouting {
                     ),
                     BlocProvider(
                       create: (context) => getIt<MatchCubit>(),
+                    ),
+                    BlocProvider(
+                      create: (context) => getIt<TeamCubit>(),
                     ),
                   ],
                   child: LeagueMainScreen(

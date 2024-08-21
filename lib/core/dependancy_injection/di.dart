@@ -7,6 +7,8 @@ import 'package:foot_fire/features/league_matches/data/repos/match_repo.dart';
 import 'package:foot_fire/features/league_matches/logic/cubit/match_cubit.dart';
 import 'package:foot_fire/features/league_table/data/repos/table_repo.dart';
 import 'package:foot_fire/features/league_table/logic/cubit/table_cubit.dart';
+import 'package:foot_fire/features/league_teams/data/repos/team_repo.dart';
+import 'package:foot_fire/features/league_teams/logic/cubit/team_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -35,6 +37,12 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<MatchRepo>(() => MatchRepo(getIt()));
 
   getIt.registerFactory<MatchCubit>(() => MatchCubit(getIt()));
+
+//league teams
+
+  getIt.registerLazySingleton<TeamRepo>(() => TeamRepo(getIt()));
+
+  getIt.registerFactory<TeamCubit>(() => TeamCubit(getIt()));
 }
 
 Dio createAndSetUpDio() {
