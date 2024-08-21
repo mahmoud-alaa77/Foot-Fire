@@ -7,6 +7,7 @@ import 'package:foot_fire/features/home/logic/cubit/country_cubit.dart';
 import 'package:foot_fire/features/home/logic/cubit/league_cubit.dart';
 import 'package:foot_fire/features/home/ui/home_screen.dart';
 import 'package:foot_fire/features/league_main_screen/ui/league_main_screen.dart';
+import 'package:foot_fire/features/matches/logic/cubit/match_cubit.dart';
 import 'package:foot_fire/features/splash/ui/splash_screen.dart';
 import 'package:foot_fire/features/table/logic/cubit/table_cubit.dart';
 
@@ -32,7 +33,11 @@ class AppRouting {
                       create: (context) => getIt<LeagueCubit>(),
                     ),
                     BlocProvider(
-                  create: (context) => getIt<TableCubit>(),),
+                      create: (context) => getIt<TableCubit>(),
+                    ),
+                    BlocProvider(
+                      create: (context) => getIt<MatchCubit>(),
+                    ),
                   ],
                   child: const HomeScreen(),
                 ));
@@ -40,8 +45,15 @@ class AppRouting {
       case Routes.leagueMainScreen:
         final Countries arg = settings.arguments as Countries;
         return MaterialPageRoute(
-            builder: (context) => BlocProvider(
-                  create: (context) => getIt<TableCubit>(),
+            builder: (context) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) => getIt<TableCubit>(),
+                    ),
+                    BlocProvider(
+                      create: (context) => getIt<MatchCubit>(),
+                    ),
+                  ],
                   child: LeagueMainScreen(
                     leagueModel: arg,
                   ),

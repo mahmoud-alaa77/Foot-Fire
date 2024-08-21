@@ -3,6 +3,8 @@ import 'package:foot_fire/core/networking/api_services.dart';
 import 'package:foot_fire/features/home/data/repos/home_repo.dart';
 import 'package:foot_fire/features/home/logic/cubit/country_cubit.dart';
 import 'package:foot_fire/features/home/logic/cubit/league_cubit.dart';
+import 'package:foot_fire/features/matches/data/repos/match_repo.dart';
+import 'package:foot_fire/features/matches/logic/cubit/match_cubit.dart';
 import 'package:foot_fire/features/table/data/repos/table_repo.dart';
 import 'package:foot_fire/features/table/logic/cubit/table_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -10,10 +12,9 @@ import 'package:get_it/get_it.dart';
 final getIt = GetIt.instance;
 
 Future<void> setupGetIt() async {
-  
 //Api Service
 
- getIt.registerLazySingleton<ApiServices>(
+  getIt.registerLazySingleton<ApiServices>(
     () => ApiServices(createAndSetUpDio()),
   );
 //home
@@ -21,14 +22,19 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
 
   getIt.registerFactory<CountryCubit>(() => CountryCubit(getIt()));
-    getIt.registerFactory<LeagueCubit>(() => LeagueCubit(getIt()));
+  getIt.registerFactory<LeagueCubit>(() => LeagueCubit(getIt()));
 
-    //league table
+  //league table
 
   getIt.registerLazySingleton<TableRepo>(() => TableRepo(getIt()));
 
   getIt.registerFactory<TableCubit>(() => TableCubit(getIt()));
 
+  //league Events(matches)
+
+  getIt.registerLazySingleton<MatchRepo>(() => MatchRepo(getIt()));
+
+  getIt.registerFactory<MatchCubit>(() => MatchCubit(getIt()));
 }
 
 Dio createAndSetUpDio() {
