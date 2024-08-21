@@ -1,12 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foot_fire/core/helpers/constants.dart';
+import 'package:foot_fire/core/helpers/helper_functions.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
+import 'package:foot_fire/features/matches/data/models/match_model.dart';
 
 class MatchCardItem extends StatelessWidget {
-  const MatchCardItem({super.key});
+  final Event event;
+  const MatchCardItem({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,7 @@ class MatchCardItem extends StatelessWidget {
       margin:
           const EdgeInsetsDirectional.symmetric(horizontal: 16, vertical: 12),
       width: double.infinity,
-      height: 160.h,
+      //height: 160.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
         border: Border.all(color: AppColors.orangeColor, width: .5),
@@ -37,14 +41,13 @@ class MatchCardItem extends StatelessWidget {
                 child: Column(
                   children: [
                     CachedNetworkImage(
-                      imageUrl:
-                          "https://www.thesportsdb.com/images/media/team/badge/xzqdr11517660252.png",
+                      imageUrl: event.strHomeTeamBadge ?? MyImages.emptyImage,
                       width: 45.w,
                       height: 45.h,
                     ),
                     verticalSpace(6),
-                    const Text(
-                      "Manchester United",
+                    Text(
+                      event.strHomeTeam ?? "---",
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -53,23 +56,29 @@ class MatchCardItem extends StatelessWidget {
               Expanded(
                 child: Column(
                   children: [
-                    const Text("24-8-2024"),
+                    Text(
+                      event.dateEventLocal ?? "---",
+                    ),
                     verticalSpace(6),
-                    const Text("10:30:00"),
+                    Text(
+                      event.strTimeLocal != null ?
+                      HelperFunctions().convertTo12HourFormat(event.strTimeLocal.toString()) : "---",
+                    ),
                     verticalSpace(16),
-                    // Text(
-                    //   "Not Started",
-                    //   style: AppTextStyles.font14OrangeW400,
-                    // ),
                     Text(
-                      "Full Time",
+                      event.strStatus == "Match Finished"
+                          ? "Full Time"
+                          : event.strStatus ?? "Unknown",
                       style: AppTextStyles.font14OrangeW400,
+                      textAlign: TextAlign.center,
                     ),
                     verticalSpace(6),
-                    Text(
-                      "6  -  4",
-                      style: AppTextStyles.font14OrangeW400,
-                    ),
+                    event.strStatus == "Not Started"
+                        ? const Text("")
+                        : Text(
+                            "${event.homeTeamScore ?? "*"}  -  ${event.awayTeamScore ?? "*"}",
+                            style: AppTextStyles.font14OrangeW400,
+                          ),
                   ],
                 ),
               ),
@@ -77,29 +86,31 @@ class MatchCardItem extends StatelessWidget {
                 child: Column(
                   children: [
                     CachedNetworkImage(
-                      imageUrl:
-                          "https://www.thesportsdb.com/images/media/team/badge/xwwvyt1448811086.png",
+                      imageUrl: event.strAwayTeamBadge ?? MyImages.emptyImage,
                       width: 45.w,
                       height: 45.h,
                     ),
                     verticalSpace(6),
-                    const Text("Fulham", textAlign: TextAlign.center)
+                    Text(event.strAwayTeam ?? "---",
+                        textAlign: TextAlign.center)
                   ],
                 ),
               ),
             ],
           ),
-          const Spacer(),
+          verticalSpace(12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "🏟 Emirates Stadium", style: AppTextStyles.font14GreyW400,
-                //textAlign: TextAlign.center,
+              Flexible(
+                child: Text(
+                  "🏟 ${event.strVenue}",
+                  style: AppTextStyles.font14GreyW400,
+                ),
               ),
               Text(
-                "Round 1", style: AppTextStyles.font14GreyW400,
-                //textAlign: TextAlign.center,
+                "Round ${event.intRound}",
+                style: AppTextStyles.font14GreyW400,
               ),
             ],
           )
