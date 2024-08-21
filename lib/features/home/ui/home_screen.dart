@@ -11,25 +11,58 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      backgroundColor: AppColors.backGroundBlackColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.backGroundBlackColor,
-        elevation: 0.0,
-        title: Text(
-          "Foot Fire🔥⚽",
-          style: AppTextStyles.font18WhiteW700,
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.search,
-              color: Colors.white,
+            backgroundColor: AppColors.backGroundBlackColor,
+            appBar: AppBar(
+              backgroundColor: AppColors.backGroundBlackColor,
+              elevation: 0.0,
+              title: Row(
+                children: [
+                  Text(
+                    "Foot ",
+                    style: AppTextStyles.font18WhiteW700,
+                  ),
+                  Text(
+                    "Fire🔥⚽",
+                    style:
+                        AppTextStyles.font14OrangeW400.copyWith(fontSize: 18),
+                  ),
+                ],
+              ),
+              actions: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {},
+                ),
+              ],
             ),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: CustomScrollView(
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const ShortVideoContainer(),
+                  verticalSpace(16),
+                  Text(
+                    "  Countries 🗺️🚩",
+                    style: AppTextStyles.font24WhiteW700,
+                  ),
+                  verticalSpace(8),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: CountriesListBlocBuilder(),
+                  ),
+                ],
+              ),
+            )));
+  }
+}
+
+
+/*
+
+CustomScrollView(
         slivers: [
           const SliverToBoxAdapter(
             child: ShortVideoContainer(),
@@ -53,6 +86,5 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-    ));
-  }
-}
+
+*/

@@ -27,7 +27,7 @@ class _LeagueMainScreenState extends State<LeagueMainScreen> {
   void initState() {
     super.initState();
     BlocProvider.of<TableCubit>(context).getTableForLeague(
-        widget.leagueModel.idLeague ?? "0",
+        widget.leagueModel.idLeague.toString(),
         widget.leagueModel.currentSeason ?? "0");
         BlocProvider.of<MatchCubit>(context).getTableForLeague(
         widget.leagueModel.idLeague ?? "0",

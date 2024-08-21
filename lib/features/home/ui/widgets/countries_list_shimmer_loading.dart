@@ -13,7 +13,7 @@ class CountriesListShimmerLoading extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return Shimmer.fromColors(
-          baseColor: Colors.black.withOpacity(.6),
+          baseColor: const Color.fromARGB(255, 66, 65, 65).withOpacity(.6),
           highlightColor: Colors.grey.withOpacity(.8),
           child: Container(
             margin: const EdgeInsetsDirectional.symmetric(
