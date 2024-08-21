@@ -69,7 +69,7 @@ class TableListItem extends StatelessWidget {
             child: Row(
               children: [
                 Text(play),
-                horizontalSpace(26),
+                horizontalSpace(20),
                 Text(win),
                 horizontalSpace(20),
 
@@ -79,14 +79,13 @@ class TableListItem extends StatelessWidget {
                 Text(
                   lose,
                 ),
-                horizontalSpace(28),
+                horizontalSpace(16),
 
                 // Text("$goalsFor-$goalsAgainst"),
                 Text(goalDifference),
                 const Spacer(),
 
                 Text(points),
-                horizontalSpace(8)
               ],
             ),
           )
