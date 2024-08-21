@@ -10,6 +10,7 @@ import 'package:foot_fire/features/league_matches/logic/cubit/match_cubit.dart';
 import 'package:foot_fire/features/league_matches/ui/matches_screen_body.dart';
 import 'package:foot_fire/features/league_table/logic/cubit/table_cubit.dart';
 import 'package:foot_fire/features/league_table/ui/table_screen_body.dart';
+import 'package:foot_fire/features/league_teams/ui/teams_screen_body.dart';
 
 class LeagueMainScreen extends StatefulWidget {
   final Countries leagueModel;
@@ -66,9 +67,7 @@ class _LeagueMainScreenState extends State<LeagueMainScreen> {
                   leagueModel: widget.leagueModel,
                 ),
                 const TableScreenBody(),
-                const Center(
-                  child: Text("!!!!!!!!"),
-                ),
+                const TeamsScreenBody(),
                 const MatchesScreenBody(),
               ]))),
     );
