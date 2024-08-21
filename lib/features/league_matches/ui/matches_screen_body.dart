@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
-import 'package:foot_fire/features/matches/logic/cubit/match_cubit.dart';
-import 'package:foot_fire/features/matches/ui/widgets/match_card_item.dart';
+import 'package:foot_fire/features/league_matches/logic/cubit/match_cubit.dart';
+import 'package:foot_fire/features/league_matches/ui/widgets/match_card_item.dart';
 
 class MatchesScreenBody extends StatelessWidget {
   const MatchesScreenBody({super.key});

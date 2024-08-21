@@ -6,7 +6,7 @@ import 'package:foot_fire/core/helpers/helper_functions.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
-import 'package:foot_fire/features/matches/data/models/match_model.dart';
+import 'package:foot_fire/features/league_matches/data/models/match_model.dart';
 
 class MatchCardItem extends StatelessWidget {
   final Event event;

@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:foot_fire/core/errors/failure.dart';
 import 'package:foot_fire/core/errors/server_failure.dart';
 import 'package:foot_fire/core/networking/api_services.dart';
-import 'package:foot_fire/features/matches/data/models/match_model.dart';
+import 'package:foot_fire/features/league_matches/data/models/match_model.dart';
 
 class MatchRepo {
   final ApiServices _apiServices;

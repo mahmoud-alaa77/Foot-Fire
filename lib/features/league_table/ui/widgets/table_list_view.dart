@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
-import 'package:foot_fire/features/table/logic/cubit/table_cubit.dart';
-import 'package:foot_fire/features/table/ui/widgets/table_list_item.dart';
+import 'package:foot_fire/features/league_table/logic/cubit/table_cubit.dart';
+import 'package:foot_fire/features/league_table/ui/widgets/table_list_item.dart';
 
 class TableListView extends StatelessWidget {
   const TableListView({

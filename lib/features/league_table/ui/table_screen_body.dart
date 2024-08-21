@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foot_fire/features/table/ui/widgets/table_list_view.dart';
-import 'package:foot_fire/features/table/ui/widgets/top_table_standing.dart';
+import 'package:foot_fire/features/league_table/ui/widgets/table_list_view.dart';
+import 'package:foot_fire/features/league_table/ui/widgets/top_table_standing.dart';
 
 class TableScreenBody extends StatelessWidget {
   const TableScreenBody({super.key});

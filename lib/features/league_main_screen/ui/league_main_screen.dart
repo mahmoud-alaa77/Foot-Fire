@@ -6,10 +6,10 @@ import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/features/home/data/models/league_model.dart';
 import 'package:foot_fire/features/league_details/ui/league_details_screen.dart';
 import 'package:foot_fire/features/league_main_screen/ui/widgets/top_bar.dart';
-import 'package:foot_fire/features/matches/logic/cubit/match_cubit.dart';
-import 'package:foot_fire/features/matches/ui/matches_screen_body.dart';
-import 'package:foot_fire/features/table/logic/cubit/table_cubit.dart';
-import 'package:foot_fire/features/table/ui/table_screen_body.dart';
+import 'package:foot_fire/features/league_matches/logic/cubit/match_cubit.dart';
+import 'package:foot_fire/features/league_matches/ui/matches_screen_body.dart';
+import 'package:foot_fire/features/league_table/logic/cubit/table_cubit.dart';
+import 'package:foot_fire/features/league_table/ui/table_screen_body.dart';
 
 class LeagueMainScreen extends StatefulWidget {
   final Countries leagueModel;

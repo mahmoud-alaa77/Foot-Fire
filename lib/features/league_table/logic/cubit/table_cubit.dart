@@ -1,6 +1,6 @@
-import 'package:foot_fire/features/table/data/models/table_model.dart';
+import 'package:foot_fire/features/league_table/data/models/table_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foot_fire/features/table/data/repos/table_repo.dart';
+import 'package:foot_fire/features/league_table/data/repos/table_repo.dart';
 part 'table_state.dart';
 
 class TableCubit extends Cubit<TableState> {
