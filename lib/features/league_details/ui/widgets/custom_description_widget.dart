@@ -20,7 +20,7 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
       children: [
         Text(
           "Description",
-          style: AppTextStyles.font24WhiteW700,
+          style: AppTextStyles.font20WhiteW800,
         ),
         verticalSpace(12),
         Text(
