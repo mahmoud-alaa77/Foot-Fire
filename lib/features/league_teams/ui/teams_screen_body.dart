@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/features/league_teams/logic/cubit/team_cubit.dart';
 import 'package:foot_fire/features/league_teams/ui/widgets/team_list_item.dart';
 
@@ -28,7 +29,10 @@ class TeamsScreenBody extends StatelessWidget {
             child: Text(state.error),
           );
         }else{
-          return const SizedBox.shrink();
+          return const Center(
+              child: CircularProgressIndicator(
+            color: AppColors.orangeColor,
+          ));
         }
       },
     );
