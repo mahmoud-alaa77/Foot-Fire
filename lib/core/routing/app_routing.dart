@@ -5,7 +5,7 @@ import 'package:foot_fire/core/routing/routes.dart';
 import 'package:foot_fire/features/home/data/models/league_model.dart';
 import 'package:foot_fire/features/home/logic/cubit/country_cubit.dart';
 import 'package:foot_fire/features/home/logic/cubit/league_cubit.dart';
-import 'package:foot_fire/features/home/ui/home_screen.dart';
+import 'package:foot_fire/features/home/ui/main_screen.dart';
 import 'package:foot_fire/features/league_main_screen/ui/league_main_screen.dart';
 import 'package:foot_fire/features/league_matches/logic/cubit/match_cubit.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
@@ -45,7 +45,7 @@ class AppRouting {
                       create: (context) => getIt<TeamCubit>(),
                     ),
                   ],
-                  child: const HomeScreen(),
+                  child: const MainScreen(),
                 ));
 
       case Routes.leagueMainScreen:
