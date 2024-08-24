@@ -32,6 +32,7 @@ class CountryListItem extends StatelessWidget {
       padding:
           const EdgeInsetsDirectional.symmetric(horizontal: 12, vertical: 8),
       width: double.infinity,
+      height: isSelected == true ? null : 70.h,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: AppColors.darkGrayColor,
@@ -42,8 +43,8 @@ class CountryListItem extends StatelessWidget {
             children: [
               CachedNetworkImage(
                 imageUrl: flagImageUrl,
-                width: 50,
-                height: 50,
+                width: 45,
+                height: 45,
                 fit: BoxFit.cover,
               ),
               horizontalSpace(8),
@@ -51,8 +52,8 @@ class CountryListItem extends StatelessWidget {
                 width: 220.w,
                 child: Text(
                   name,
-                  style: AppTextStyles.font18WhiteW700,
-                  maxLines: 2,
+                  style: AppTextStyles.font16WhiteW500,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -85,12 +86,12 @@ class CountryListItem extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
-                               
                                 context.pushNamed(Routes.leagueMainScreen,
-                                    arguments: state.leaguesList.countries?[index]);
-                                    //  context.read<TableCubit>().getTableForLeague(
-                                    // "4328",
-                                    // "2024-2025");
+                                    arguments:
+                                        state.leaguesList.countries?[index]);
+                                //  context.read<TableCubit>().getTableForLeague(
+                                // "4328",
+                                // "2024-2025");
                               },
                               child: LeaguesListItem(
                                 leagueImageUrl: state.leaguesList
