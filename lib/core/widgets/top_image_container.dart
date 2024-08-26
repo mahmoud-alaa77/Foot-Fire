@@ -7,8 +7,9 @@ import 'package:foot_fire/core/theming/app_colors.dart';
 class TopImageContainer extends StatelessWidget {
   final String bannerUrl;
   final String logoUrl;
+  final void Function()? favOnPressed;
   const TopImageContainer(
-      {super.key, required this.bannerUrl, required this.logoUrl});
+      {super.key, required this.bannerUrl, required this.logoUrl, this.favOnPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,10 @@ class TopImageContainer extends StatelessWidget {
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.error,size: 35,),
+                    Icon(
+                      Icons.error,
+                      size: 35,
+                    ),
                     Text("No Image Found")
                   ],
                 ),
@@ -43,15 +47,15 @@ class TopImageContainer extends StatelessWidget {
               child: Container(
                 decoration: const BoxDecoration(
                     shape: BoxShape.circle, color: AppColors.darkGrayColor),
-                width: 120.w,
-                height: 120.h,
+                width: 118.w,
+                height: 118.h,
                 child: Center(
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(100),
                     child: CachedNetworkImage(
                       imageUrl: logoUrl,
-                      width: 100,
-                      height: 100,
+                      width: 115,
+                      height: 1115,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -72,6 +76,21 @@ class TopImageContainer extends StatelessWidget {
                     },
                     icon: Icon(
                       Icons.arrow_back,
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      size: 30.r,
+                    )),
+              )),
+          Positioned(
+              top: 10.h,
+              right: 10.w,
+              child: Container(
+                decoration: BoxDecoration(
+                    color: AppColors.darkGrayColor.withOpacity(.5),
+                    borderRadius: BorderRadius.circular(12)),
+                child: IconButton(
+                    onPressed: favOnPressed,
+                    icon: Icon(
+                      Icons.favorite_border,
                       color: const Color.fromARGB(255, 255, 255, 255),
                       size: 30.r,
                     )),

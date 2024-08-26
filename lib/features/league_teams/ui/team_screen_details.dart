@@ -4,11 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foot_fire/core/helpers/constants.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
-import 'package:foot_fire/features/league_details/ui/widgets/custom_description_widget.dart';
-import 'package:foot_fire/features/league_details/ui/widgets/social_media_icons.dart';
+import 'package:foot_fire/core/widgets/custom_description_widget.dart';
+import 'package:foot_fire/core/widgets/social_media_icons.dart';
+import 'package:foot_fire/core/widgets/top_image_container.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
 import 'package:foot_fire/features/league_teams/ui/widgets/icon_and_row_widget.dart';
-import 'package:foot_fire/features/league_teams/ui/widgets/top_Image_container.dart';
 
 class TeamScreenDetails extends StatelessWidget {
   final Team team;
@@ -66,24 +66,25 @@ class TeamScreenDetails extends StatelessWidget {
                       title: team.lLocation ?? "",
                     ),
                     verticalSpace(16),
-                     DescriptionWidget(
-                      desc:team.strDescriptionEN ?? "",
+                    DescriptionWidget(
+                      desc: team.strDescriptionEN ?? "",
                     ),
                     verticalSpace(24),
-                   team.strEquipment !=null ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CachedNetworkImage(
-                          imageUrl:
-                              team.strEquipment.toString(),
-                          width: 200.h,
-                          height: 200.h,
-                          fit: BoxFit.fill,
-                        ),
-                      ],
-                    ) : const SizedBox.shrink(),
+                    team.strEquipment != null
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CachedNetworkImage(
+                                imageUrl: team.strEquipment.toString(),
+                                width: 200.h,
+                                height: 200.h,
+                                fit: BoxFit.fill,
+                              ),
+                            ],
+                          )
+                        : const SizedBox.shrink(),
                     verticalSpace(24),
-                     SocialMediaIcons(
+                    SocialMediaIconsButtons(
                       facebookUrl: team.strFacebook,
                       twitterUrl: team.strTwitter,
                       instagramUrl: team.strInstagram,

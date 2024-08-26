@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:foot_fire/core/helpers/constants.dart';
 import 'package:foot_fire/core/helpers/helper_functions.dart';
 
-class SocialMediaIcons extends StatelessWidget {
+class SocialMediaIconsButtons extends StatelessWidget {
   final String? facebookUrl;
   final String? twitterUrl;
   final String? instagramUrl;
   final String? youTubeUrl;
   final String? websiteUrl;
-  const SocialMediaIcons(
+  const SocialMediaIconsButtons(
       {super.key,
       this.facebookUrl,
       this.twitterUrl,

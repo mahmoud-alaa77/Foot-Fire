@@ -60,7 +60,8 @@ class Player {
   String? strFanart4;
 
   Player(
-      {this.idPlayer,
+      {
+        this.idPlayer,
       this.idTeam,
       this.playerNationality,
       this.playerName,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/features/home/data/models/league_model.dart';
-import 'package:foot_fire/features/league_details/ui/widgets/custom_description_widget.dart';
+import 'package:foot_fire/core/widgets/custom_description_widget.dart';
 import 'package:foot_fire/features/league_details/ui/widgets/display_images_widget.dart';
 import 'package:foot_fire/features/league_details/ui/widgets/more_details.dart';
-import 'package:foot_fire/features/league_details/ui/widgets/social_media_icons.dart';
+import 'package:foot_fire/core/widgets/social_media_icons.dart';
 
 class LeagueDetailsScreenBody extends StatelessWidget {
   final Countries leagueModel;
@@ -44,7 +44,7 @@ class LeagueDetailsScreenBody extends StatelessWidget {
                   valueText: leagueModel.currentSeason ?? "",
                 ),
                 verticalSpace(24),
-                SocialMediaIcons(
+                SocialMediaIconsButtons(
                   facebookUrl: leagueModel.strFacebook,
                   twitterUrl: leagueModel.strTwitter,
                   instagramUrl: leagueModel.strInstagram,

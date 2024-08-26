@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foot_fire/core/helpers/constants.dart';
+import 'package:foot_fire/core/helpers/extentions.dart';
+import 'package:foot_fire/core/routing/routes.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
 import 'package:foot_fire/features/search/data/models/player_model.dart';
@@ -64,6 +66,9 @@ class SearchBlocBuilder extends StatelessWidget {
             itemBuilder: (context, index) {
               final Team team = state.teamModel.teams![index];
               return SearchCardItem(
+                onTap: (){
+                  context.pushNamed(Routes.teamDetails,arguments: team);
+                },
                 searchItem: SearchItem(team.idTeam,
                     title: team.teamName,
                     subTitle: team.leagueName,
@@ -81,13 +86,15 @@ class SearchBlocBuilder extends StatelessWidget {
             itemBuilder: (context, index) {
               final Player player = state.players![index];
               return SearchCardItem(
+                onTap: () {
+                  context.pushNamed(Routes.playerProfile,arguments: player);
+                },
                 searchItem: SearchItem(player.idPlayer,
                     title: player.playerName,
                     subTitle: player.teamName,
-                    imageUrl: player.strThumb),
+                    imageUrl:player.strCutout ?? player.strThumb ),
               );
             },
           );
   }
 }
-
