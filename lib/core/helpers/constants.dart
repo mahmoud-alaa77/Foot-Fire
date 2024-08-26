@@ -12,6 +12,7 @@ List<String> animatedImages = [
 class MyImages {
   static const String emptyImage =
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvf9wn1WvKWCp2eCV0atTl56ONzL6TyTPh702UMXqeHag2ZUG0YPch6-XWd2o4S_dK1J4&usqp=CAU";
+  static const String unKnownPersonImage = "https://www.shutterstock.com/image-vector/unknown-person-female-silhouette-260nw-217557139.jpg";
 
   static const String facebookImage = "assets/images/facebook.png";
   static const String twitterImage = "assets/images/twitter.png";
