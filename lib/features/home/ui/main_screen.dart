@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foot_fire/core/dependancy_injection/di.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
-import 'package:foot_fire/features/home/ui/widgets/home_screen_body.dart';
+import 'package:foot_fire/features/home/ui/home_screen_body.dart';
 import 'package:foot_fire/features/league_teams/ui/teams_screen_body.dart';
+import 'package:foot_fire/features/search/logic/cubit/search_cubit.dart';
+import 'package:foot_fire/features/search/ui/search_screen_body.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -14,10 +18,13 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _bodies = const [
-    HomeScreenBody(),
-    TeamsScreenBody(),
-    HomeScreenBody(),
+  final List<Widget> _bodies = [
+    const HomeScreenBody(),
+    const TeamsScreenBody(),
+    BlocProvider(
+      create: (context) => getIt<SearchCubit>(),
+      child: const SearchScreenBody(),
+    ),
   ];
 
   void _onTabTapped(int index) {
