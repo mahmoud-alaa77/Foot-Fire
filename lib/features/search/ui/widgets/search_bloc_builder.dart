@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foot_fire/core/helpers/constants.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
-import 'package:foot_fire/core/theming/app_text_styles.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
 import 'package:foot_fire/features/search/data/models/player_model.dart';
 import 'package:foot_fire/features/search/data/models/search_item.dart';
