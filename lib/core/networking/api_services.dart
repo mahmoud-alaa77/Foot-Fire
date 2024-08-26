@@ -5,6 +5,8 @@ import 'package:foot_fire/features/home/data/models/league_model.dart';
 import 'package:foot_fire/features/league_matches/data/models/match_model.dart';
 import 'package:foot_fire/features/league_table/data/models/table_model.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
+import 'package:foot_fire/features/search/data/models/player_model.dart';
+import 'package:foot_fire/features/search/data/models/staduim_model.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
@@ -32,4 +34,19 @@ abstract class ApiServices {
   @GET("/api/v1/json/3/search_all_teams.php?l={leagueName}")
   Future<TeamModel> getTeamsInLeagueByLeagueName(
       @Path("leagueName") String leagueName);
+
+  @GET("/api/v1/json/3/searchplayers.php?p={playerName}")
+  Future<PlayerModel> searchByPlayer(@Path("playerName") String playerName);
+
+  @GET("/api/v1/json/3/searchteams.php?t={teamFullName}")
+  Future<TeamModel> searchByTeamFullName(
+      @Path("teamFullName") String teamFullName);
+
+  @GET("/api/v1/json/3/searchteams.php?sname={teamShortName}")
+  Future<TeamModel> searchByTeamShortName(
+      @Path("teamShortName") String teamShortName);
+
+  @GET("/api/v1/json/3/searchvenues.php?t={staduimName}")
+  Future<StaduimModel> searchByStduimName(
+      @Path("staduimName") String staduimName);
 }
