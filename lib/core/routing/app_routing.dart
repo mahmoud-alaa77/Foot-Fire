@@ -11,6 +11,8 @@ import 'package:foot_fire/features/league_matches/logic/cubit/match_cubit.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
 import 'package:foot_fire/features/league_teams/logic/cubit/team_cubit.dart';
 import 'package:foot_fire/features/league_teams/ui/team_screen_details.dart';
+import 'package:foot_fire/features/player_profile/ui/player_profile_screen.dart';
+import 'package:foot_fire/features/search/data/models/player_model.dart';
 import 'package:foot_fire/features/splash/ui/splash_screen.dart';
 import 'package:foot_fire/features/league_table/logic/cubit/table_cubit.dart';
 
@@ -69,10 +71,20 @@ class AppRouting {
                 ));
 
       case Routes.teamDetails:
-              final Team arg = settings.arguments as Team;
+        final Team arg = settings.arguments as Team;
 
         return MaterialPageRoute(
-            builder: (context) =>  TeamScreenDetails(team: arg,));
+            builder: (context) => TeamScreenDetails(
+                  team: arg,
+                ));
+
+      case Routes.playerProfile:
+        final Player arg = settings.arguments as Player;
+
+        return MaterialPageRoute(
+            builder: (context) => PlayerProfileScreen(
+                  player: arg,
+                ));
 
       default:
         return null;
