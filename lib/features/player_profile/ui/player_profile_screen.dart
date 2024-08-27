@@ -7,6 +7,7 @@ import 'package:foot_fire/core/widgets/social_media_icons.dart';
 import 'package:foot_fire/core/widgets/top_image_container.dart';
 import 'package:foot_fire/core/widgets/custom_description_widget.dart';
 import 'package:foot_fire/features/player_profile/ui/widgets/main_details_container.dart';
+import 'package:foot_fire/features/player_profile/ui/widgets/player_houner.dart';
 import 'package:foot_fire/features/search/data/models/player_model.dart';
 
 class PlayerProfileScreen extends StatelessWidget {
@@ -48,6 +49,8 @@ class PlayerProfileScreen extends StatelessWidget {
                   MainDetailsContainer(
                     player: player,
                   ),
+                  verticalSpace(12),
+                   PlayerHonour(playerId: player.idPlayer??"",),
                   verticalSpace(16),
                   DescriptionWidget(
                     desc: player.strDescriptionEN ?? "",
