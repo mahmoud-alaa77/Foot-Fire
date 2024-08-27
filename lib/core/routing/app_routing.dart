@@ -11,6 +11,7 @@ import 'package:foot_fire/features/league_matches/logic/cubit/match_cubit.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
 import 'package:foot_fire/features/league_teams/logic/cubit/team_cubit.dart';
 import 'package:foot_fire/features/league_teams/ui/team_screen_details.dart';
+import 'package:foot_fire/features/player_profile/logic/cubit/player_cubit.dart';
 import 'package:foot_fire/features/player_profile/ui/player_profile_screen.dart';
 import 'package:foot_fire/features/search/data/models/player_model.dart';
 import 'package:foot_fire/features/search/data/models/staduim_model.dart';
@@ -84,8 +85,11 @@ class AppRouting {
         final Player arg = settings.arguments as Player;
 
         return MaterialPageRoute(
-            builder: (context) => PlayerProfileScreen(
-                  player: arg,
+            builder: (context) => BlocProvider(
+                  create: (context) => getIt<PlayerCubit>(),
+                  child: PlayerProfileScreen(
+                    player: arg,
+                  ),
                 ));
 
       case Routes.staduimDetails:
