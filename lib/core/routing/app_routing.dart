@@ -13,8 +13,10 @@ import 'package:foot_fire/features/league_teams/logic/cubit/team_cubit.dart';
 import 'package:foot_fire/features/league_teams/ui/team_screen_details.dart';
 import 'package:foot_fire/features/player_profile/ui/player_profile_screen.dart';
 import 'package:foot_fire/features/search/data/models/player_model.dart';
+import 'package:foot_fire/features/search/data/models/staduim_model.dart';
 import 'package:foot_fire/features/splash/ui/splash_screen.dart';
 import 'package:foot_fire/features/league_table/logic/cubit/table_cubit.dart';
+import 'package:foot_fire/features/stadium_details/ui/stadium_details_screen.dart';
 
 class AppRouting {
   Route? genrateRoute(RouteSettings settings) {
@@ -84,6 +86,14 @@ class AppRouting {
         return MaterialPageRoute(
             builder: (context) => PlayerProfileScreen(
                   player: arg,
+                ));
+
+      case Routes.staduimDetails:
+        final Staduim arg = settings.arguments as Staduim;
+
+        return MaterialPageRoute(
+            builder: (context) => StadiumDetailsScreen(
+                  staduim: arg,
                 ));
 
       default:
