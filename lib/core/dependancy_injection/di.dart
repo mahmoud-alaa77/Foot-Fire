@@ -9,6 +9,8 @@ import 'package:foot_fire/features/league_table/data/repos/table_repo.dart';
 import 'package:foot_fire/features/league_table/logic/cubit/table_cubit.dart';
 import 'package:foot_fire/features/league_teams/data/repos/team_repo.dart';
 import 'package:foot_fire/features/league_teams/logic/cubit/team_cubit.dart';
+import 'package:foot_fire/features/player_profile/data/repos/player_repo.dart';
+import 'package:foot_fire/features/player_profile/logic/cubit/player_cubit.dart';
 import 'package:foot_fire/features/search/data/repos/search_repo.dart';
 import 'package:foot_fire/features/search/logic/cubit/search_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -52,6 +54,13 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<SearchRepo>(() => SearchRepo(getIt()));
 
   getIt.registerFactory<SearchCubit>(() => SearchCubit(getIt()));
+
+
+//player profile
+
+  getIt.registerLazySingleton<PlayerRepo>(() => PlayerRepo(getIt()));
+
+  getIt.registerFactory<PlayerCubit>(() => PlayerCubit(getIt()));
 
 }
 
