@@ -11,7 +11,7 @@ class DisplayImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
-      itemCount: 4,
+      itemCount: imagesList.length,
       itemBuilder: (context, index, realIndex) {
         return Container(
           decoration: BoxDecoration(
@@ -22,9 +22,9 @@ class DisplayImages extends StatelessWidget {
             child: CachedNetworkImage(
               errorWidget: (context, url, error) {
                 return Container(
-                  decoration: const BoxDecoration(color: AppColors.orangeColor),
+                  decoration: const BoxDecoration(color: AppColors.lightGrayColor),
                   child: const Center(
-                    child: Text("No Internet Connection"),
+                    child: Text("No Image Found !"),
                   ),
                 );
               },

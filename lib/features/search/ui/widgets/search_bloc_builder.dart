@@ -49,6 +49,9 @@ class SearchBlocBuilder extends StatelessWidget {
             itemBuilder: (context, index) {
               final Staduim staduim = state.staduimList![index];
               return SearchCardItem(
+                onTap: () {
+                  context.pushNamed(Routes.staduimDetails, arguments: staduim);
+                },
                 searchItem: SearchItem(staduim.idVenue,
                     title: staduim.staduimName,
                     subTitle: staduim.strCountry,
@@ -66,8 +69,8 @@ class SearchBlocBuilder extends StatelessWidget {
             itemBuilder: (context, index) {
               final Team team = state.teamModel.teams![index];
               return SearchCardItem(
-                onTap: (){
-                  context.pushNamed(Routes.teamDetails,arguments: team);
+                onTap: () {
+                  context.pushNamed(Routes.teamDetails, arguments: team);
                 },
                 searchItem: SearchItem(team.idTeam,
                     title: team.teamName,
@@ -87,12 +90,12 @@ class SearchBlocBuilder extends StatelessWidget {
               final Player player = state.players![index];
               return SearchCardItem(
                 onTap: () {
-                  context.pushNamed(Routes.playerProfile,arguments: player);
+                  context.pushNamed(Routes.playerProfile, arguments: player);
                 },
                 searchItem: SearchItem(player.idPlayer,
                     title: player.playerName,
                     subTitle: player.teamName,
-                    imageUrl:player.strCutout ?? player.strThumb ),
+                    imageUrl: player.strCutout ?? player.strThumb),
               );
             },
           );
