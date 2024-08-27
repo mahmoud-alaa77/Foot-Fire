@@ -17,41 +17,41 @@ part 'api_services.g.dart';
 abstract class ApiServices {
   factory ApiServices(Dio dio, {String baseUrl}) = _ApiServices;
 
-  @GET(ApiConstants.allCountries)
+  @GET(ApiConstants.allCountriesEP)
   Future<CountryModel> getAllCountries();
 
-  @GET("/api/v1/json/3/search_all_leagues.php?c={countryName}")
+  @GET(ApiConstants.allLeaguesEP)
   Future<LeagueModel> getLeaguesByCountryName(
       @Path("countryName") String countryName);
 
-  @GET("/api/v1/json/3/lookuptable.php?l={leagueId}&s={season}")
+  @GET(ApiConstants.leagueTableEP)
   Future<TableModel> getTableByLeagueIdAndSeason(
       @Path("leagueId") String leagueId, @Path("season") String season);
 
-  @GET("/api/v1/json/3/eventsseason.php?id={leagueId}&s={season}")
+  @GET(ApiConstants.allMatchesEP)
   Future<MatchModel> getAllMatchesByLeagueIdAndSeason(
       @Path("leagueId") String leagueId, @Path("season") String season);
 
-  @GET("/api/v1/json/3/search_all_teams.php?l={leagueName}")
+  @GET(ApiConstants.teamsInLeagueEP)
   Future<TeamModel> getTeamsInLeagueByLeagueName(
       @Path("leagueName") String leagueName);
 
-  @GET("/api/v1/json/3/searchplayers.php?p={playerName}")
+  @GET(ApiConstants.searchByPlayerEP)
   Future<PlayerModel> searchByPlayer(@Path("playerName") String playerName);
 
-  @GET("/api/v1/json/3/searchteams.php?t={teamFullName}")
+  @GET(ApiConstants.searchByFullNameTeamEP)
   Future<TeamModel> searchByTeamFullName(
       @Path("teamFullName") String teamFullName);
 
-  @GET("/api/v1/json/3/searchteams.php?sname={teamShortName}")
+  @GET(ApiConstants.searchByShortNameTeamEP)
   Future<TeamModel> searchByTeamShortName(
       @Path("teamShortName") String teamShortName);
 
-  @GET("/api/v1/json/3/searchvenues.php?t={staduimName}")
+  @GET(ApiConstants.searchByStduimNameEP)
   Future<StaduimModel> searchByStduimName(
       @Path("staduimName") String staduimName);
 
-  @GET("/api/v1/json/3/lookuphonours.php?id={playerID}")
+  @GET(ApiConstants.getPlayerHonoursByPlayerIdEP)
   Future<HonourModel> getPlayerHonoursByPlayerId(
       @Path("playerID") String playerID);
 }
