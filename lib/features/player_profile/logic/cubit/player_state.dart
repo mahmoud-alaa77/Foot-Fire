@@ -15,3 +15,9 @@ class PlayerHonourListFailure extends PlayerState {
   final String errorMessage;
   PlayerHonourListFailure({required this.errorMessage});
 }
+
+
+class PlayerCareerListLoaded extends PlayerState {
+  final List<Formerteam> teams;
+  PlayerCareerListLoaded({required this.teams});
+}

@@ -1,3 +1,4 @@
+import 'package:foot_fire/features/player_profile/data/models/career_model.dart';
 import 'package:foot_fire/features/player_profile/data/models/honour_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foot_fire/features/player_profile/data/repos/player_repo.dart';
@@ -18,4 +19,18 @@ class PlayerCubit extends Cubit<PlayerState> {
       emit(PlayerHonourListLoaded(honours: honourModel.honours ?? []));
     });
   }
+
+
+ getPlayerCareerByPlayerId(String playerID) async {
+    emit(PlayerHonourListLoading());
+
+    var response = await _playerRepo.getPlayerCareerByPlayerID(playerID);
+
+    response.fold((failure) {
+      emit(PlayerHonourListFailure(errorMessage: failure.errorMessage));
+    }, (careerModel) {
+      emit(PlayerCareerListLoaded(teams: careerModel.formerteams ?? []));
+    });
+  }
+
 }
