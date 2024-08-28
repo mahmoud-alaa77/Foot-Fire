@@ -5,6 +5,7 @@ import 'package:foot_fire/features/home/data/models/league_model.dart';
 import 'package:foot_fire/features/league_matches/data/models/match_model.dart';
 import 'package:foot_fire/features/league_table/data/models/table_model.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
+import 'package:foot_fire/features/player_profile/data/models/career_model.dart';
 import 'package:foot_fire/features/player_profile/data/models/honour_model.dart';
 import 'package:foot_fire/features/search/data/models/player_model.dart';
 import 'package:foot_fire/features/search/data/models/staduim_model.dart';
@@ -54,4 +55,10 @@ abstract class ApiServices {
   @GET(ApiConstants.getPlayerHonoursByPlayerIdEP)
   Future<HonourModel> getPlayerHonoursByPlayerId(
       @Path("playerID") String playerID);
+
+  @GET(ApiConstants.getPlayerCareerByPlayerIdEP)
+  Future<CareerModel> getPlayerCareerByPlayerId(
+      @Path("playerID") String playerID);
+
+      
 }
