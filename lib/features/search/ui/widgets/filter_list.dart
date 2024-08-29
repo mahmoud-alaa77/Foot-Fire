@@ -5,7 +5,7 @@ import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
 import 'package:foot_fire/features/search/logic/cubit/search_cubit.dart';
-import 'package:foot_fire/features/search/ui/widgets/filter_item_button.dart';
+import 'package:foot_fire/core/widgets/filter_item_button.dart';
 
 class FilterList extends StatefulWidget {
   const FilterList({super.key});

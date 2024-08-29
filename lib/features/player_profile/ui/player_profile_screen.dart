@@ -6,6 +6,7 @@ import 'package:foot_fire/core/theming/app_text_styles.dart';
 import 'package:foot_fire/core/widgets/social_media_icons.dart';
 import 'package:foot_fire/core/widgets/top_image_container.dart';
 import 'package:foot_fire/core/widgets/custom_description_widget.dart';
+import 'package:foot_fire/features/favorites/data/models/favorite_item_mode.dart';
 import 'package:foot_fire/features/player_profile/ui/widgets/main_details_container.dart';
 import 'package:foot_fire/features/player_profile/ui/widgets/player_career.dart';
 import 'package:foot_fire/features/player_profile/ui/widgets/player_houner.dart';
@@ -16,6 +17,7 @@ class PlayerProfileScreen extends StatelessWidget {
   const PlayerProfileScreen({super.key, required this.player});
 
   @override
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
@@ -25,6 +27,13 @@ class PlayerProfileScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TopImageContainer(
+              favoriteItem: FavoriteItemModel(
+                  title: player.playerName ?? "",
+                  subTitle: player.teamName ?? "",
+                  imageUrl: player.strThumb ??
+                      player.strCutout ??
+                      MyImages.unKnownPersonImage,
+                  category: "player"),
               bannerUrl:
                   player.strBanner ?? player.strFanart1 ?? MyImages.emptyImage,
               logoUrl: player.strCutout ??

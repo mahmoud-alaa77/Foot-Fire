@@ -7,6 +7,7 @@ import 'package:foot_fire/core/theming/app_text_styles.dart';
 import 'package:foot_fire/core/widgets/custom_description_widget.dart';
 import 'package:foot_fire/core/widgets/social_media_icons.dart';
 import 'package:foot_fire/core/widgets/top_image_container.dart';
+import 'package:foot_fire/features/favorites/data/models/favorite_item_mode.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
 import 'package:foot_fire/features/league_teams/ui/widgets/icon_and_row_widget.dart';
 
@@ -23,6 +24,12 @@ class TeamScreenDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TopImageContainer(
+                favoriteItem: FavoriteItemModel(
+                    title: team.teamName ?? "",
+                    subTitle: team.strCountry ?? "",
+                    imageUrl:
+                        team.strBadge ?? team.strLogo ?? MyImages.emptyImage,
+                    category: "team"),
                 bannerUrl: team.strBanner.toString(),
                 logoUrl: team.strBadge ?? MyImages.emptyImage,
               ),

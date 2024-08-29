@@ -5,7 +5,6 @@ import 'package:foot_fire/core/helpers/extentions.dart';
 import 'package:foot_fire/core/routing/routes.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
-import 'package:foot_fire/features/player_profile/logic/cubit/player_cubit.dart';
 import 'package:foot_fire/features/search/data/models/player_model.dart';
 import 'package:foot_fire/features/search/data/models/search_item.dart';
 import 'package:foot_fire/features/search/data/models/staduim_model.dart';

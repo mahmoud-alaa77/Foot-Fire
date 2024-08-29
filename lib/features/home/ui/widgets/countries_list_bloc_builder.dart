@@ -52,7 +52,8 @@ class CountriesListBlocBuilder extends StatelessWidget {
           },
         );
       },
-      itemCount: state.countries.allCountries.length,
+      itemCount: 10
+      // state.countries.allCountries.length,
     );
   }
 }
