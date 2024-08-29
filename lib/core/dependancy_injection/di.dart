@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:foot_fire/core/helpers/database_helper.dart';
 import 'package:foot_fire/core/networking/api_services.dart';
+import 'package:foot_fire/features/favorites/data/repos/favorites_repo.dart';
+import 'package:foot_fire/features/favorites/logic/cubit/favorites_cubit.dart';
 import 'package:foot_fire/features/home/data/repos/home_repo.dart';
 import 'package:foot_fire/features/home/logic/cubit/country_cubit.dart';
 import 'package:foot_fire/features/home/logic/cubit/league_cubit.dart';
@@ -23,6 +26,12 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<ApiServices>(
     () => ApiServices(createAndSetUpDio()),
   );
+
+  //local database
+  getIt.registerFactory<DataBaseHelper>(
+    () => DataBaseHelper(),
+  );
+
 //home
 
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
@@ -48,13 +57,11 @@ Future<void> setupGetIt() async {
 
   getIt.registerFactory<TeamCubit>(() => TeamCubit(getIt()));
 
-
 //search
 
   getIt.registerLazySingleton<SearchRepo>(() => SearchRepo(getIt()));
 
   getIt.registerFactory<SearchCubit>(() => SearchCubit(getIt()));
-
 
 //player profile
 
@@ -62,6 +69,10 @@ Future<void> setupGetIt() async {
 
   getIt.registerFactory<PlayerCubit>(() => PlayerCubit(getIt()));
 
+  //favorites
+
+  getIt.registerLazySingleton<FavoritesRepo>(() => FavoritesRepo(getIt()));
+  getIt.registerFactory<FavoritesCubit>(() => FavoritesCubit(getIt()));
 }
 
 Dio createAndSetUpDio() {
