@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foot_fire/core/dependancy_injection/di.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
+import 'package:foot_fire/features/favorites/logic/cubit/favorites_cubit.dart';
+import 'package:foot_fire/features/favorites/ui/favorite_items_screen_body.dart';
 import 'package:foot_fire/features/home/ui/home_screen_body.dart';
-import 'package:foot_fire/features/league_teams/ui/teams_screen_body.dart';
 import 'package:foot_fire/features/search/logic/cubit/search_cubit.dart';
 import 'package:foot_fire/features/search/ui/search_screen_body.dart';
 
@@ -20,7 +21,10 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _bodies = [
     const HomeScreenBody(),
-    const TeamsScreenBody(),
+    BlocProvider(
+      create: (context) => getIt<FavoritesCubit>()..getAllFavoriteItems(),
+      child: const FavoriteItemsScreen(),
+    ),
     BlocProvider(
       create: (context) => getIt<SearchCubit>(),
       child: const SearchScreenBody(),

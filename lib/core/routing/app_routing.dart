@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foot_fire/core/dependancy_injection/di.dart';
 import 'package:foot_fire/core/routing/routes.dart';
+import 'package:foot_fire/features/favorites/logic/cubit/favorites_cubit.dart';
 import 'package:foot_fire/features/home/data/models/league_model.dart';
 import 'package:foot_fire/features/home/logic/cubit/country_cubit.dart';
 import 'package:foot_fire/features/home/logic/cubit/league_cubit.dart';
@@ -77,16 +78,26 @@ class AppRouting {
         final Team arg = settings.arguments as Team;
 
         return MaterialPageRoute(
-            builder: (context) => TeamScreenDetails(
-                  team: arg,
+            builder: (context) => BlocProvider(
+                  create: (context) => getIt<FavoritesCubit>()..checkIsFavoriteOrNot(arg.teamName.toString()),
+                  child: TeamScreenDetails(
+                    team: arg,
+                  ),
                 ));
 
       case Routes.playerProfile:
         final Player arg = settings.arguments as Player;
 
         return MaterialPageRoute(
-            builder: (context) => BlocProvider(
-                  create: (context) => getIt<PlayerCubit>(),
+            builder: (context) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) => getIt<PlayerCubit>(),
+                    ),
+                    BlocProvider(
+                      create: (context) => getIt<FavoritesCubit>()..checkIsFavoriteOrNot(arg.playerName.toString()),
+                    ),
+                  ],
                   child: PlayerProfileScreen(
                     player: arg,
                   ),
