@@ -12,10 +12,14 @@ final class CountriesListLoaded extends CountryState {
   CountriesListLoaded(this.buttonStates, {required this.countries});
 }
 
+final class CustomCountriesListLoaded extends CountryState {
+  final List<Country> countries;
+  final List<bool> buttonStates;
+  CustomCountriesListLoaded(this.buttonStates, {required this.countries});
+}
+
 final class CountriesListError extends CountryState {
   final String error;
 
   CountriesListError({required this.error});
 }
-
-

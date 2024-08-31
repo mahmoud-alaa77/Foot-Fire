@@ -6,6 +6,7 @@ import 'package:foot_fire/features/favorites/logic/cubit/favorites_cubit.dart';
 import 'package:foot_fire/features/home/data/models/league_model.dart';
 import 'package:foot_fire/features/home/logic/cubit/country_cubit.dart';
 import 'package:foot_fire/features/home/logic/cubit/league_cubit.dart';
+import 'package:foot_fire/features/home/ui/all_countries_screen.dart';
 import 'package:foot_fire/features/home/ui/main_screen.dart';
 import 'package:foot_fire/features/league_main_screen/ui/league_main_screen.dart';
 import 'package:foot_fire/features/league_matches/logic/cubit/match_cubit.dart';
@@ -36,7 +37,7 @@ class AppRouting {
                   providers: [
                     BlocProvider(
                       create: (context) =>
-                          CountryCubit(getIt())..getAllCountries(),
+                          CountryCubit(getIt())..getCustomCountries(),
                     ),
                     BlocProvider(
                       create: (context) => getIt<LeagueCubit>(),
@@ -79,7 +80,8 @@ class AppRouting {
 
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                  create: (context) => getIt<FavoritesCubit>()..checkIsFavoriteOrNot(arg.teamName.toString()),
+                  create: (context) => getIt<FavoritesCubit>()
+                    ..checkIsFavoriteOrNot(arg.teamName.toString()),
                   child: TeamScreenDetails(
                     team: arg,
                   ),
@@ -95,7 +97,8 @@ class AppRouting {
                       create: (context) => getIt<PlayerCubit>(),
                     ),
                     BlocProvider(
-                      create: (context) => getIt<FavoritesCubit>()..checkIsFavoriteOrNot(arg.playerName.toString()),
+                      create: (context) => getIt<FavoritesCubit>()
+                        ..checkIsFavoriteOrNot(arg.playerName.toString()),
                     ),
                   ],
                   child: PlayerProfileScreen(
@@ -110,7 +113,20 @@ class AppRouting {
             builder: (context) => StadiumDetailsScreen(
                   staduim: arg,
                 ));
-
+      case Routes.allCountriesScreen:
+        return MaterialPageRoute(
+            builder: (context) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) =>
+                          getIt<CountryCubit>()..getAllCountries(),
+                    ),
+                    BlocProvider(
+                      create: (context) => getIt<LeagueCubit>(),
+                    ),
+                  ],
+                  child: const AllCountriesScreen(),
+                ));
       default:
         return null;
     }

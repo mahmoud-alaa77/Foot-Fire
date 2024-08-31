@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:foot_fire/core/helpers/extentions.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
+import 'package:foot_fire/core/routing/routes.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
 import 'package:foot_fire/features/home/ui/widgets/countries_list_bloc_builder.dart';
 import 'package:foot_fire/features/home/ui/widgets/home_app_bar.dart';
@@ -16,10 +18,28 @@ class HomeScreenBody extends StatelessWidget {
         children: [
           const HomeAppBar(),
           const ShortVideoContainer(),
-          verticalSpace(16),
-          Text(
-            "  Countries 🗺️🚩",
-            style: AppTextStyles.font20WhiteW800,
+          verticalSpace(12),
+          Row(
+            children: [
+              horizontalSpace(12),
+              Text(
+                "Popular Countries 🗺️🚩",
+                style: AppTextStyles.font18WhiteW400,
+              ),
+              const Spacer(),
+              TextButton(
+                  onPressed: () {
+                    context.pushNamed(
+                      Routes.allCountriesScreen,
+                    );
+                  },
+                  child: Text(
+                    "See all",
+                    style: AppTextStyles.font14OrangeW400
+                        .copyWith(decoration: TextDecoration.underline),
+                  )),
+              horizontalSpace(8)
+            ],
           ),
           verticalSpace(8),
           const Padding(

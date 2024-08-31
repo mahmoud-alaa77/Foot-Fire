@@ -14,7 +14,7 @@ class CountriesListBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CountryCubit, CountryState>(
       builder: (context, state) {
-        if (state is CountriesListLoaded) {
+        if (state is CustomCountriesListLoaded) {
           return setCountriesListLoadedSuccess(context, state);
         } else if (state is CountriesListError) {
           return Center(
@@ -29,31 +29,32 @@ class CountriesListBlocBuilder extends StatelessWidget {
     );
   }
 
-  ListView setCountriesListLoadedSuccess(BuildContext context, state) {
+  ListView setCountriesListLoadedSuccess(
+      BuildContext context, CustomCountriesListLoaded state) {
     return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        return CountryListItem(
-          isSelected: context.read<CountryCubit>().buttonStates[index],
-          icon: context.read<CountryCubit>().buttonStates[index]
-              ? Icons.keyboard_arrow_up
-              : Icons.keyboard_arrow_down,
-          name: state.countries.allCountries[index].countryName,
-          flagImageUrl: state.countries.allCountries[index].flagImageUrl,
-          onPressed: () async {
-            if (context.read<CountryCubit>().buttonStates[index] == false) {
-              await context.read<LeagueCubit>().getAllLeaguesByCountryName(
-                  HelperFunctions().replaceSpaces(
-                      state.countries.allCountries[index].countryName));
-            }
-            // ignore: use_build_context_synchronously
-            context.read<CountryCubit>().changeButtonState(index);
-          },
-        );
-      },
-      itemCount: 10
-      // state.countries.allCountries.length,
-    );
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          return CountryListItem(
+            isSelected: context.read<CountryCubit>().buttonStates[index],
+            icon: context.read<CountryCubit>().buttonStates[index]
+                ? Icons.keyboard_arrow_up
+                : Icons.keyboard_arrow_down,
+            name: state.countries[index].countryName,
+            flagImageUrl: state.countries[index].flagImageUrl,
+            onPressed: () async {
+              if (context.read<CountryCubit>().buttonStates[index] == false) {
+                await context.read<LeagueCubit>().getAllLeaguesByCountryName(
+                    HelperFunctions()
+                        .replaceSpaces(state.countries[index].countryName));
+              }
+              // ignore: use_build_context_synchronously
+              context
+                  .read<CountryCubit>()
+                  .changeButtonStateForCustomCountriesList(index);
+            },
+          );
+        },
+        itemCount: context.read<CountryCubit>().specialCountries.length);
   }
 }

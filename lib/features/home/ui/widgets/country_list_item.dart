@@ -89,9 +89,6 @@ class CountryListItem extends StatelessWidget {
                                 context.pushNamed(Routes.leagueMainScreen,
                                     arguments:
                                         state.leaguesList.countries?[index]);
-                                //  context.read<TableCubit>().getTableForLeague(
-                                // "4328",
-                                // "2024-2025");
                               },
                               child: LeaguesListItem(
                                 leagueImageUrl: state.leaguesList

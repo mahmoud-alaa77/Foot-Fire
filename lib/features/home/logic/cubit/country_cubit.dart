@@ -9,6 +9,7 @@ class CountryCubit extends Cubit<CountryState> {
 
   List<bool> buttonStates = [];
   late CountryModel allCountries;
+  late List<Country> specialCountries;
   getAllCountries() async {
     emit(CountriesListLoading());
 
@@ -24,7 +25,7 @@ class CountryCubit extends Cubit<CountryState> {
     });
   }
 
-  void changeButtonState(int index) {
+  void changeButtonStateForAllCountriesList(int index) {
     if (buttonStates[index] == false) {
       buttonStates[index] = true;
       closeOtherTabs(index);
@@ -36,6 +37,20 @@ class CountryCubit extends Cubit<CountryState> {
     }
   }
 
+  void changeButtonStateForCustomCountriesList(int index) {
+    if (buttonStates[index] == false) {
+      buttonStates[index] = true;
+      closeOtherTabs(index);
+
+      emit(
+          CustomCountriesListLoaded(countries: specialCountries, buttonStates));
+    } else {
+      buttonStates[index] = false;
+      emit(
+          CustomCountriesListLoaded(countries: specialCountries, buttonStates));
+    }
+  }
+
   void closeOtherTabs(int index) {
     for (int i = 0; i < buttonStates.length; i++) {
       if (buttonStates[i] == true && i != index) {
@@ -43,4 +58,40 @@ class CountryCubit extends Cubit<CountryState> {
       }
     }
   }
+
+  getCustomCountries() async {
+    emit(CountriesListLoading());
+
+    var result = await _homeRepo.getAllCountries();
+
+    result.fold((failure) {
+      emit(CountriesListError(error: failure.errorMessage));
+    }, (countriesList) {
+      allCountries = countriesList;
+
+      specialCountries = countriesList.allCountries
+          .where((country) => customCountries.contains(country.countryName))
+          .toList();
+      buttonStates = List.generate(specialCountries.length, (_) => false);
+      emit(
+          CustomCountriesListLoaded(countries: specialCountries, buttonStates));
+    });
+  }
+
+  List<String> customCountries = [
+    'England',
+    'Spain',
+    'France',
+    'Italy',
+    'Germany',
+    'Belgium',
+    'Egypt',
+    'Portugal',
+    'The Netherlands',
+    'Palestine',
+    'Saudi Arabia',
+    'turkiye',
+    'Brazil',
+    'Argentina'
+  ];
 }
