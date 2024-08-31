@@ -6,6 +6,7 @@ import 'package:foot_fire/core/helpers/helper_functions.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
+import 'package:foot_fire/core/widgets/social_media_icons.dart';
 import 'package:foot_fire/features/league_matches/data/models/match_model.dart';
 
 class MatchCardItem extends StatelessWidget {
@@ -20,7 +21,6 @@ class MatchCardItem extends StatelessWidget {
       margin:
           const EdgeInsetsDirectional.symmetric(horizontal: 16, vertical: 12),
       width: double.infinity,
-      //height: 160.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
         border: Border.all(color: AppColors.orangeColor, width: .5),
@@ -61,8 +61,10 @@ class MatchCardItem extends StatelessWidget {
                     ),
                     verticalSpace(6),
                     Text(
-                      event.strTimeLocal != null ?
-                      HelperFunctions().convertTo12HourFormat(event.strTimeLocal.toString()) : "---",
+                      event.strTimeLocal != null
+                          ? HelperFunctions().convertTo12HourFormat(
+                              event.strTimeLocal.toString())
+                          : "---",
                     ),
                     verticalSpace(16),
                     Text(
@@ -108,10 +110,12 @@ class MatchCardItem extends StatelessWidget {
                   style: AppTextStyles.font14GreyW400,
                 ),
               ),
-              Text(
-                "Round ${event.intRound}",
-                style: AppTextStyles.font14GreyW400,
-              ),
+             event.strVideo !=null ? SocialMediaImageButton(
+          image: MyImages.youTubeImage,
+          urlText: event.strVideo.toString(),
+          height: 30,
+          width: 30,
+        ):const SizedBox.shrink(),
             ],
           )
         ],

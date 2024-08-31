@@ -49,8 +49,11 @@ class SocialMediaIconsButtons extends StatelessWidget {
 class SocialMediaImageButton extends StatelessWidget {
   final String urlText;
   final String image;
+  final double? width;
+    final double? height;
+
   const SocialMediaImageButton(
-      {super.key, required this.urlText, required this.image});
+      {super.key, required this.urlText, required this.image, this.width, this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +62,8 @@ class SocialMediaImageButton extends StatelessWidget {
         HelperFunctions().launchLink(urlText, context);
       },
       child: Container(
-        width: 50,
-        height: 50,
+        width:width ?? 50,
+        height:height?? 50,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(
