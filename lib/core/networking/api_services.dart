@@ -60,5 +60,9 @@ abstract class ApiServices {
   Future<CareerModel> getPlayerCareerByPlayerId(
       @Path("playerID") String playerID);
 
+ @GET(ApiConstants.allPlayersInTeamEP)
+  Future<PlayerModel> getAllPlayersInTeamByIdEP(
+      @Path("playerID") String playerID);
+
       
 }

@@ -70,7 +70,7 @@ class SearchBlocBuilder extends StatelessWidget {
               final Team team = state.teamModel.teams![index];
               return SearchCardItem(
                 onTap: () {
-                  context.pushNamed(Routes.teamDetails, arguments: team);
+                  context.pushNamed(Routes.teamScreen, arguments: team);
                 },
                 searchItem: SearchItem(team.idTeam,
                     title: team.teamName,

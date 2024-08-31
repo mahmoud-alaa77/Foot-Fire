@@ -12,7 +12,7 @@ import 'package:foot_fire/features/league_main_screen/ui/league_main_screen.dart
 import 'package:foot_fire/features/league_matches/logic/cubit/match_cubit.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
 import 'package:foot_fire/features/league_teams/logic/cubit/team_cubit.dart';
-import 'package:foot_fire/features/league_teams/ui/team_screen_details.dart';
+import 'package:foot_fire/features/team_details/ui/team_main_screen.dart';
 import 'package:foot_fire/features/player_profile/logic/cubit/player_cubit.dart';
 import 'package:foot_fire/features/player_profile/ui/player_profile_screen.dart';
 import 'package:foot_fire/features/search/data/models/player_model.dart';
@@ -75,14 +75,14 @@ class AppRouting {
                   ),
                 ));
 
-      case Routes.teamDetails:
+      case Routes.teamScreen:
         final Team arg = settings.arguments as Team;
 
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
                   create: (context) => getIt<FavoritesCubit>()
                     ..checkIsFavoriteOrNot(arg.teamName.toString()),
-                  child: TeamScreenDetails(
+                  child: TeamMainScreen(
                     team: arg,
                   ),
                 ));

@@ -23,6 +23,8 @@ class ApiConstants {
       "/api/v1/json/3/searchvenues.php?t={staduimName}";
   static const String getPlayerHonoursByPlayerIdEP =
       "/api/v1/json/3/lookuphonours.php?id={playerID}";
-      static const String getPlayerCareerByPlayerIdEP =
+  static const String getPlayerCareerByPlayerIdEP =
       "/api/v1/json/3/lookupformerteams.php?id={playerID}";
+  static const String allPlayersInTeamEP =
+      "/api/v1/json/3/lookup_all_players.php?id={playerID}";
 }
