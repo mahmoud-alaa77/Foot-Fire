@@ -29,10 +29,11 @@ class _LeagueMainScreenState extends State<LeagueMainScreen> {
     BlocProvider.of<TableCubit>(context).getTableForLeague(
         widget.leagueModel.idLeague.toString(),
         widget.leagueModel.currentSeason ?? "0");
-        BlocProvider.of<MatchCubit>(context).getTableForLeague(
+    BlocProvider.of<MatchCubit>(context).getTableForLeague(
         widget.leagueModel.idLeague ?? "0",
         widget.leagueModel.currentSeason ?? "0");
-         BlocProvider.of<TeamCubit>(context).getTeamsInLeague(HelperFunctions().replaceSpaces(widget.leagueModel.leagueName?? ""));
+    BlocProvider.of<TeamCubit>(context).getTeamsInLeague(
+        HelperFunctions().replaceSpaces(widget.leagueModel.leagueName ?? ""));
   }
 
   @override
@@ -46,12 +47,10 @@ class _LeagueMainScreenState extends State<LeagueMainScreen> {
                 leadingWidth: 0,
                 toolbarHeight: 120.h,
                 title: TopBar(
-                  countryName:
-                      widget.leagueModel.leagueCountry ?? "",
-                  currentSeason:
-                      widget.leagueModel.currentSeason ?? "",
-                  leagueLogo: widget.leagueModel.badgeImage ??
-                      MyImages.emptyImage,
+                  countryName: widget.leagueModel.leagueCountry ?? "",
+                  currentSeason: widget.leagueModel.currentSeason ?? "",
+                  leagueLogo:
+                      widget.leagueModel.badgeImage ?? MyImages.emptyImage,
                   leagueName: widget.leagueModel.leagueName ?? "",
                 ),
                 backgroundColor: AppColors.darkGrayColor,
