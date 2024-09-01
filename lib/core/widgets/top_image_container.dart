@@ -26,7 +26,7 @@ class TopImageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 240.h,
+      height: 260.h,
       child: Stack(
         children: [
           _buildBannerImage(),
@@ -39,12 +39,18 @@ class TopImageContainer extends StatelessWidget {
   }
 
   Widget _buildBannerImage() {
-    return CachedNetworkImage(
-      imageUrl: bannerUrl,
-      errorWidget: (context, url, error) => _buildErrorWidget(),
-      width: double.infinity,
-      height: 200.h,
-      fit: BoxFit.fill,
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        bottomLeft: Radius.circular(24),
+        bottomRight: Radius.circular(24),
+      ),
+      child: CachedNetworkImage(
+        imageUrl: bannerUrl,
+        errorWidget: (context, url, error) => _buildErrorWidget(),
+        width: double.infinity,
+        height: 230.h,
+        fit: BoxFit.fill,
+      ),
     );
   }
 
@@ -67,7 +73,7 @@ class TopImageContainer extends StatelessWidget {
   Widget _buildLogo() {
     return Positioned(
       bottom: 0,
-      left: 10.w,
+      left: 16.w,
       child: CircleAvatar(
         radius: 62.r,
         backgroundColor: AppColors.lightGrayColor,

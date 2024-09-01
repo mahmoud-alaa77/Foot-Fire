@@ -11,18 +11,54 @@ class FavoritesListFilter extends StatefulWidget {
   const FavoritesListFilter({super.key});
 
   @override
-  State<FavoritesListFilter> createState() => _FilterListState();
+  State<FavoritesListFilter> createState() => _FavoritesListFilterState();
 }
 
-class _FilterListState extends State<FavoritesListFilter> {
+class _FavoritesListFilterState extends State<FavoritesListFilter> {
+  void _updateFilter({required bool all, required bool team, required bool player}) {
+    final cubit = context.read<FavoritesCubit>();
+    setState(() {
+      cubit.filterAllItemsButton = all;
+      cubit.filterTeamButton = team;
+      cubit.filterPlayerButton = player;
+    });
+
+    if (all) {
+      cubit.getAllFavoriteItems();
+    } else if (team) {
+      cubit.getFavoriteTeams();
+    } else if (player) {
+      cubit.getFavoritePlayers();
+    }
+
+    
+      ScaffoldMessenger.of(context).showSnackBar(
+         SnackBar(
+          content:  Center(child:  Text("⬅Pull horizontally to delete➡",style: AppTextStyles.font12WhiteW300,)),
+          backgroundColor: AppColors.lightGrayColor.withOpacity(.1),
+        ),
+      );
+    
+  }
+
+  Widget _buildFilterButton(String title, bool isActive, VoidCallback onTap) {
+    return FilterItemButton(
+      title: title,
+      borderColor: isActive ? Colors.white : AppColors.backGroundBlackColor,
+      onTap: onTap,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<FavoritesCubit>();
+
     return SizedBox(
       width: double.infinity,
       height: 35.h,
       child: Row(
         children: [
-           Text(
+          Text(
             "Filter by :",
             style: AppTextStyles.font14OrangeW400,
           ),
@@ -31,53 +67,22 @@ class _FilterListState extends State<FavoritesListFilter> {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                FilterItemButton(
-                  title: "All",
-                  borderColor:
-                      context.read<FavoritesCubit>().filterAllItemsButton == true
-                          ? Colors.white
-                          : AppColors.backGroundBlackColor,
-                  onTap: () {
-                    setState(() {
-                      context.read<FavoritesCubit>().filterAllItemsButton = true;
-                      context.read<FavoritesCubit>().filterPlayerButton = false;
-                      context.read<FavoritesCubit>().filterTeamButton = false;
-                    });
-                                  context.read<FavoritesCubit>().getAllFavoriteItems();
-            
-                  },
+                _buildFilterButton(
+                  "All",
+                  cubit.filterAllItemsButton,
+                  () => _updateFilter(all: true, team: false, player: false),
                 ),
                 horizontalSpace(6),
-                FilterItemButton(
-                  borderColor: context.read<FavoritesCubit>().filterTeamButton == true
-                      ? Colors.white
-                      : AppColors.backGroundBlackColor,
-                  title: "Teams",
-                  onTap: () {
-                    setState(() {
-                      context.read<FavoritesCubit>().filterAllItemsButton = false;
-                      context.read<FavoritesCubit>().filterPlayerButton = false;
-                      context.read<FavoritesCubit>().filterTeamButton = true;
-                    });
-                                  context.read<FavoritesCubit>().getFavoriteTeams();
-            
-                  },
+                _buildFilterButton(
+                  "Teams",
+                  cubit.filterTeamButton,
+                  () => _updateFilter(all: false, team: true, player: false),
                 ),
                 horizontalSpace(6),
-                FilterItemButton(
-                  borderColor:
-                      context.read<FavoritesCubit>().filterPlayerButton == true
-                          ? Colors.white
-                          : AppColors.backGroundBlackColor,
-                  title: "Players",
-                  onTap: () {
-                    setState(() {
-                      context.read<FavoritesCubit>().filterAllItemsButton = false;
-                      context.read<FavoritesCubit>().filterPlayerButton = true;
-                      context.read<FavoritesCubit>().filterTeamButton = false;
-                    });
-                    context.read<FavoritesCubit>().getFavoritePlayers();
-                  },
+                _buildFilterButton(
+                  "Players",
+                  cubit.filterPlayerButton,
+                  () => _updateFilter(all: false, team: false, player: true),
                 ),
                 horizontalSpace(6),
               ],

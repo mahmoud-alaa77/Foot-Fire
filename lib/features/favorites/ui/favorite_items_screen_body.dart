@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
-
 import 'package:foot_fire/features/favorites/logic/cubit/favorites_cubit.dart';
 import 'package:foot_fire/features/favorites/ui/widgets/favorite_list_item.dart';
 import 'package:foot_fire/features/favorites/ui/widgets/favorites_list_filter.dart';
@@ -31,21 +30,21 @@ class FavoriteItemsScreen extends StatelessWidget {
                   return const NoResultFound();
                 }
                 {
-                  return favoritItemsFounded(state);
+                  return favoriteItemsFounded(state);
                 }
               } else if (state is FavoritesPlayersLoaded) {
                 if (state.items.isEmpty) {
                   return const NoResultFound();
                 }
                 {
-                  return favoritItemsFounded(state);
+                  return favoriteItemsFounded(state);
                 }
               } else if (state is FavoritesTeamsLoaded) {
                 if (state.items.isEmpty) {
                   return const NoResultFound();
                 }
                 {
-                  return favoritItemsFounded(state);
+                  return favoriteItemsFounded(state);
                 }
               } else if (state is FavoritesError) {
                 return Center(
@@ -63,6 +62,21 @@ class FavoriteItemsScreen extends StatelessWidget {
       ),
     );
   }
+
+  GridView favoriteItemsFounded(state) {
+    return GridView.builder(
+        padding: const EdgeInsets.only(top: 12, left: 8, right: 8),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+          childAspectRatio: .9,
+        ),
+        itemCount: state.items.length,
+        itemBuilder: (context, index) {
+          return FavoriteListItem(favItem: state.items[index]);
+        });
+  }
 }
 
 Row favoritesAppBar() {
@@ -77,19 +91,5 @@ Row favoritesAppBar() {
         size: 30,
       ),
     ],
-  );
-}
-
-ListView favoritItemsFounded(state) {
-  return ListView.separated(
-    separatorBuilder: (context, index) {
-      return verticalSpace(16);
-    },
-    itemCount: state.items.length,
-    itemBuilder: (context, index) {
-      return FavoriteListItem(
-        favoriteItemModel: state.items[index],
-      );
-    },
   );
 }

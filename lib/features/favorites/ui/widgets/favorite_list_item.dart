@@ -10,76 +10,65 @@ import 'package:foot_fire/features/favorites/data/models/favorite_item_mode.dart
 import 'package:foot_fire/features/favorites/logic/cubit/favorites_cubit.dart';
 
 class FavoriteListItem extends StatelessWidget {
-  final FavoriteItemModel favoriteItemModel;
-
-  const FavoriteListItem({super.key, required this.favoriteItemModel});
+  final FavoriteItemModel favItem;
+  const FavoriteListItem({super.key, required this.favItem});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsetsDirectional.all(8),
-      decoration: BoxDecoration(
-          border: Border.all(color: AppColors.lightGrayColor),
-          borderRadius: BorderRadiusDirectional.circular(16)),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: EdgeInsetsDirectional.symmetric(
-                horizontal: favoriteItemModel.category == "team" ? 10 : 0,
-                vertical: favoriteItemModel.category == "team" ? 12 : 0),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadiusDirectional.circular(16)),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: CachedNetworkImage(
-                imageUrl: favoriteItemModel.imageUrl,
-                width: favoriteItemModel.category == "team" ? 50 : 70,
-                height: favoriteItemModel.category == "team" ? 75 : 100,
-                fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {},
+      child: Dismissible(
+        key: UniqueKey(),
+        onDismissed: (DismissDirection direction) {
+          DataBaseHelper().deleteFromFavorites(favItem.title);
+          context.read<FavoritesCubit>().getFavoritesAfterFilter();
+        },
+        background: Container(
+          margin:
+              const EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 8),
+          color: AppColors.backGroundBlackColor,
+          child: Center(
+            child: Icon(
+              Icons.close,
+              size: 65.r,
+              color: Colors.red,
+            ),
+          ),
+        ),
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16.r),
+            color: AppColors.darkGrayColor.withOpacity(.5),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadiusDirectional.circular(100),
+                child: CachedNetworkImage(
+                  imageUrl: favItem.imageUrl,
+                  width: 100.w,
+                  height: 100.h,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-          ),
-          horizontalSpace(10),
-          Expanded(
-            flex: 3,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                verticalSpace(8),
-                Text(
-                  favoriteItemModel.title,
-                  style: AppTextStyles.font20WhiteW800,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+              verticalSpace(12),
+              Flexible(
+                child: Text(
+                  favItem.title,
+                  style: AppTextStyles.font18WhiteW700,
+                  textAlign: TextAlign.center,
                 ),
-                verticalSpace(4),
-                Text(
-                  favoriteItemModel.subTitle,
-                  style: AppTextStyles.font16GreyW400,
-                ),
-                 Text(
-                  favoriteItemModel.category,
-                  style: AppTextStyles.font16GreyW400,
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: IconButton(
-              icon: Icon(
-                Icons.highlight_remove_sharp,
-                color: Colors.red.withOpacity(.7),
-                size: 35.r,
               ),
-              onPressed: () {
-                DataBaseHelper().deleteFromFavorites(favoriteItemModel.title);
-                context.read<FavoritesCubit>().getFavoritesAfterFilter();
-              },
-            ),
+              Text(
+                favItem.subTitle,
+                style: AppTextStyles.font14OrangeW400,
+              )
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
