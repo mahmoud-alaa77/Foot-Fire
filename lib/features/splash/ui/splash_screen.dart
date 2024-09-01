@@ -11,12 +11,12 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: AnimatedSplashScreen(
-        splash: Image.asset("assets/images/logo.png"),
-        splashIconSize: 280,
+        splash: Image.asset("assets/images/splash.png"),
+        splashIconSize: 250,
         backgroundColor: AppColors.backGroundBlackColor,
         nextRoute: Routes.home,
         disableNavigation: false,
-        duration: 400,
+        duration: 600,
         animationDuration: const Duration(seconds: 1),
         splashTransition: SplashTransition.scaleTransition,
         nextScreen: const MainScreen(),
