@@ -7,6 +7,7 @@ import 'package:foot_fire/foot_fire_app.dart';
 
 void main()  {
   Bloc.observer = SimpleBlocObserver();
+    WidgetsFlutterBinding.ensureInitialized();
   runApp(FootFireApp(
     appRouter: AppRouting(),
   ));
