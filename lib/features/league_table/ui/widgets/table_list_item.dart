@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
+import 'package:foot_fire/core/theming/app_text_styles.dart';
 
 class TableListItem extends StatelessWidget {
   final String rank;
@@ -43,9 +44,10 @@ class TableListItem extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
+            flex: 7,
             child: Row(
               children: [
-                Text(rank),
+                Text(rank,style: AppTextStyles.font12WhiteW300,),
                 horizontalSpace(4),
                 CachedNetworkImage(
                   imageUrl: logoTeamImage,
@@ -59,33 +61,33 @@ class TableListItem extends StatelessWidget {
                     teamName,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
-                    style: const TextStyle(fontSize: 12),
+                    style: AppTextStyles.font12WhiteW300,
                   ),
                 ),
               ],
             ),
           ),
           Expanded(
+            flex: 9,
             child: Row(
               children: [
-                Text(play),
-                horizontalSpace(20),
-                Text(win),
-                horizontalSpace(20),
+                Expanded(child: Text(play)),
+                Expanded(child: Text(win,style: AppTextStyles.font10WhiteW300,)),
 
-                Text(drawUp),
-                horizontalSpace(20),
+                Expanded(child: Text(drawUp,style: AppTextStyles.font10WhiteW300,)),
 
-                Text(
-                  lose,
+                Expanded(
+                  child: Text(
+                    lose,style: AppTextStyles.font10WhiteW300,
+                  ),
                 ),
-                horizontalSpace(16),
 
-                // Text("$goalsFor-$goalsAgainst"),
-                Text(goalDifference),
-                const Spacer(),
+                 Expanded(
+                  flex: 2,
+                  child: Text("$goalsFor/$goalsAgainst",style: AppTextStyles.font10WhiteW300,)),
+                Expanded(child: Text(goalDifference,style: AppTextStyles.font10WhiteW300,)),
 
-                Text(points),
+                Expanded(child: Text(points,style: AppTextStyles.font10WhiteW300,)),
               ],
             ),
           )

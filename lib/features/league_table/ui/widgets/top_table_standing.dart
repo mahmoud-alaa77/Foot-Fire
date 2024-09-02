@@ -20,32 +20,35 @@ class TopTableStanding extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
+            flex: 7,
               child: Text(
             "  #",
             style: AppTextStyles.font14OrangeW400.copyWith(fontSize: 28),
           )),
           Expanded(
+            flex: 9,
             child: Row(
               children: [
                 const Text('PL'),
-                horizontalSpace(16),
+                horizontalSpace(10),
                 Container(
-                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 6),
+                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 4),
                   color: Colors.green,
                   child: const Text('W'),
                 ),
                 Container(
-                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 8),
+                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 6),
                   color: Colors.blue,
                   child: const Text('D'),
                 ),
                 Container(
-                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 8),
+                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 6),
                   color: Colors.red,
                   child: const Text('L'),
                 ),
-                horizontalSpace(16),
-                // const Text('+/-'),
+                horizontalSpace(18),
+                const Text('+/-'),
+                horizontalSpace(18),
                 const Text('GD'),
                 horizontalSpace(16),
                 const Text('Pts'),

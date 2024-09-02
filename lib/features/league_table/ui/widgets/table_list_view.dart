@@ -38,12 +38,6 @@ class TableListView extends StatelessWidget {
           );
         } else if (state is TableError) {
           return const SizedBox.shrink();
-
-          // return Center(
-          //     child: Text(
-          //   state.errorMessage,
-          //   style: AppTextStyles.font18WhiteW700,
-          // ));
         } else {
           return const Center(
               child: CircularProgressIndicator(
