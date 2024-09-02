@@ -81,9 +81,16 @@ class AppRouting {
         final Team arg = settings.arguments as Team;
 
         return MaterialPageRoute(
-            builder: (context) => BlocProvider(
-                  create: (context) => getIt<FavoritesCubit>()
-                    ..checkIsFavoriteOrNot(arg.teamName.toString()),
+            builder: (context) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) => getIt<FavoritesCubit>()
+                        ..checkIsFavoriteOrNot(arg.teamName.toString()),
+                    ),
+                    BlocProvider(
+                      create: (context) => getIt<TeamCubit>(),
+                    ),
+                  ],
                   child: TeamScreenDetails(
                     team: arg,
                   ),

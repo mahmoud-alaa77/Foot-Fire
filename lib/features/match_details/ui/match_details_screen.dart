@@ -56,13 +56,19 @@ class _MatchDetailsScreenState extends State<MatchDetailsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(children: [
-                CachedNetworkImage(
-                  imageUrl: widget.event.strThumb ??
-                      widget.event.strPoster ??
-                      MyImages.emptyImage,
-                  width: double.infinity,
-                  fit: BoxFit.fill,
-                  height: 200.h,
+                ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(36),
+                    bottomRight: Radius.circular(36),
+                  ),
+                  child: CachedNetworkImage(
+                    imageUrl: widget.event.strThumb ??
+                        widget.event.strPoster ??
+                        MyImages.emptyImage,
+                    width: double.infinity,
+                    fit: BoxFit.fill,
+                    height: 200.h,
+                  ),
                 ),
                 _buildBackButton(context),
               ]),

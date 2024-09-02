@@ -56,7 +56,7 @@ class TopImageContainer extends StatelessWidget {
 
   Widget _buildErrorWidget() {
     return Container(
-      color: AppColors.lightGrayColor,
+      color: AppColors.lightGrayColor.withOpacity(.3),
       child: const Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
