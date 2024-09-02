@@ -11,6 +11,11 @@ final class TeamsListLoaded extends TeamState {
 
   TeamsListLoaded({required this.teamMembers });
 }
+final class TeamShirtsLoaded extends TeamState {
+  final List<Shirt> shirtsList;
+
+  TeamShirtsLoaded({required this.shirtsList });
+}
 
 final class TeamsListFailure extends TeamState {
   final String error;
