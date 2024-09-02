@@ -60,10 +60,12 @@ class _TeamScreenDetailsState extends State<TeamScreenDetails> {
                       style: AppTextStyles.font24WhiteW700,
                     ),
                     verticalSpace(12),
-                    IconAndRowWidget(
-                      icon: Icons.title,
-                      title: widget.team.teamAlternateName ?? "",
-                    ),
+                    widget.team.teamAlternateName != ""
+                        ? IconAndRowWidget(
+                            icon: Icons.title,
+                            title: widget.team.teamAlternateName ?? "",
+                          )
+                        : const SizedBox.shrink(),
                     verticalSpace(8),
                     Row(
                       children: [
