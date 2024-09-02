@@ -4,6 +4,7 @@ import 'package:foot_fire/features/home/data/models/country_model.dart';
 import 'package:foot_fire/features/home/data/models/league_model.dart';
 import 'package:foot_fire/features/league_matches/data/models/match_model.dart';
 import 'package:foot_fire/features/league_table/data/models/table_model.dart';
+import 'package:foot_fire/features/league_teams/data/models/shirt_model.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
 import 'package:foot_fire/features/player_profile/data/models/career_model.dart';
 import 'package:foot_fire/features/player_profile/data/models/honour_model.dart';
@@ -60,5 +61,6 @@ abstract class ApiServices {
   Future<CareerModel> getPlayerCareerByPlayerId(
       @Path("playerID") String playerID);
 
-      
+  @GET(ApiConstants.getShirtsByTeamIdEP)
+  Future<ShirtModel> getShirtsByTeamId(@Path("teamID") String teamID);
 }
