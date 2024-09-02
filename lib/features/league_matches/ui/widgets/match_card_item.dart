@@ -2,11 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foot_fire/core/helpers/constants.dart';
+import 'package:foot_fire/core/helpers/extentions.dart';
 import 'package:foot_fire/core/helpers/helper_functions.dart';
 import 'package:foot_fire/core/helpers/spaces.dart';
+import 'package:foot_fire/core/routing/routes.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
-import 'package:foot_fire/core/widgets/social_media_icons.dart';
 import 'package:foot_fire/features/league_matches/data/models/match_model.dart';
 
 class MatchCardItem extends StatelessWidget {
@@ -15,27 +16,30 @@ class MatchCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding:
-          const EdgeInsetsDirectional.symmetric(horizontal: 16, vertical: 8),
-      margin:
-          const EdgeInsetsDirectional.symmetric(horizontal: 16, vertical: 12),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.r),
-        border: Border.all(color: AppColors.orangeColor, width: .5),
-        color: AppColors.darkGrayColor,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.orangeColor.withOpacity(.2),
-            offset: const Offset(0, 4.0),
-            blurRadius: 6.0,
+    return GestureDetector(
+      onTap: () {
+        context.pushNamed(Routes.matchDetailsScreen, arguments: event);
+      },
+      child: GestureDetector(
+        child: Container(
+          padding: const EdgeInsetsDirectional.symmetric(
+              horizontal: 16, vertical: 8),
+          margin: const EdgeInsetsDirectional.symmetric(
+              horizontal: 16, vertical: 12),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.r),
+            border: Border.all(color: AppColors.orangeColor, width: .5),
+            color: AppColors.darkGrayColor,
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.orangeColor.withOpacity(.2),
+                offset: const Offset(0, 4.0),
+                blurRadius: 6.0,
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Row(
+          child: Row(
             children: [
               Expanded(
                 child: Column(
@@ -100,25 +104,7 @@ class MatchCardItem extends StatelessWidget {
               ),
             ],
           ),
-          verticalSpace(12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: Text(
-                  "🏟 ${event.strVenue}",
-                  style: AppTextStyles.font14GreyW400,
-                ),
-              ),
-             event.strVideo !=null ? SocialMediaImageButton(
-          image: MyImages.youTubeImage,
-          urlText: event.strVideo.toString(),
-          height: 30,
-          width: 30,
-        ):const SizedBox.shrink(),
-            ],
-          )
-        ],
+        ),
       ),
     );
   }

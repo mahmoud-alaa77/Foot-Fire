@@ -29,14 +29,16 @@ class MatchesScreenBody extends StatelessWidget {
                 return Column(
                   children: [
                     verticalSpace(8),
-                    buildSeparatedCotainer(state, 1),
+                    buildSeparatedCotainer(state, 0),
+                    MatchCardItem(
+                      event: state.matchModel.events![index],
+                    )
                   ],
                 );
-              } else {
-                return MatchCardItem(
-                  event: state.matchModel.events![index],
-                );
               }
+              return MatchCardItem(
+                event: state.matchModel.events![index],
+              );
             },
           );
         } else if (state is MatchesListFailure) {
