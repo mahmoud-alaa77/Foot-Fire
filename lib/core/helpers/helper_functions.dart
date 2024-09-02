@@ -47,16 +47,10 @@ class HelperFunctions {
   }
 
   int calculateAge(String birthdate) {
-    // Parse the birthdate string to a DateTime object
     DateTime birthDate = DateTime.parse(birthdate);
-
-    // Get the current date
     DateTime currentDate = DateTime.now();
-
-    // Calculate the age
     int age = currentDate.year - birthDate.year;
 
-    // Adjust the age if the current date is before the birthdate in the current year
     if (currentDate.month < birthDate.month ||
         (currentDate.month == birthDate.month &&
             currentDate.day < birthDate.day)) {
@@ -65,4 +59,17 @@ class HelperFunctions {
 
     return age;
   }
+
+  String cutAfterEquals(String input) {
+  // Check if the input contains the "=" character
+  if (input.contains("=")) {
+    // Split the input string into a list of substrings based on "="
+    var parts = input.split("=");
+    // Return the part after the "=" character, trimming any leading/trailing whitespace
+    return parts[1].trim();
+  } else {
+    // If there is no "=" in the input, return the original string
+    return input;
+  }
+}
 }
