@@ -9,10 +9,12 @@ import 'package:foot_fire/features/home/logic/cubit/league_cubit.dart';
 import 'package:foot_fire/features/home/ui/all_countries_screen.dart';
 import 'package:foot_fire/features/home/ui/main_screen.dart';
 import 'package:foot_fire/features/league_main_screen/ui/league_main_screen.dart';
+import 'package:foot_fire/features/league_matches/data/models/match_model.dart';
 import 'package:foot_fire/features/league_matches/logic/cubit/match_cubit.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
 import 'package:foot_fire/features/league_teams/logic/cubit/team_cubit.dart';
 import 'package:foot_fire/features/league_teams/ui/team_screen_details.dart';
+import 'package:foot_fire/features/match_details/ui/match_details_screen.dart';
 import 'package:foot_fire/features/player_profile/logic/cubit/player_cubit.dart';
 import 'package:foot_fire/features/player_profile/ui/player_profile_screen.dart';
 import 'package:foot_fire/features/search/data/models/player_model.dart';
@@ -85,6 +87,14 @@ class AppRouting {
                   child: TeamScreenDetails(
                     team: arg,
                   ),
+                ));
+
+      case Routes.matchDetailsScreen:
+        final Event arg = settings.arguments as Event;
+
+        return MaterialPageRoute(
+            builder: (context) => MatchDetailsScreen(
+                  event: arg,
                 ));
 
       case Routes.playerProfile:
