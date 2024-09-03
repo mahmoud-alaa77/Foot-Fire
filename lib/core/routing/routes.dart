@@ -8,6 +8,7 @@ class Routes {
   static const String staduimDetails = "/staduim_details";
   static const String allCountriesScreen = "/all_cuntries";
   static const String matchDetailsScreen = "/match_details";
+  static const String playerDetailsScreen = "/player_details";
 
 
 }

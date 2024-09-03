@@ -8,6 +8,7 @@ import 'package:foot_fire/features/home/logic/cubit/country_cubit.dart';
 import 'package:foot_fire/features/home/logic/cubit/league_cubit.dart';
 import 'package:foot_fire/features/home/ui/all_countries_screen.dart';
 import 'package:foot_fire/features/home/ui/main_screen.dart';
+import 'package:foot_fire/features/home/ui/player_details_screen.dart';
 import 'package:foot_fire/features/league_main_screen/ui/league_main_screen.dart';
 import 'package:foot_fire/features/league_matches/data/models/match_model.dart';
 import 'package:foot_fire/features/league_matches/logic/cubit/match_cubit.dart';
@@ -17,7 +18,7 @@ import 'package:foot_fire/features/league_teams/ui/team_screen_details.dart';
 import 'package:foot_fire/features/match_details/ui/match_details_screen.dart';
 import 'package:foot_fire/features/player_profile/logic/cubit/player_cubit.dart';
 import 'package:foot_fire/features/player_profile/ui/player_profile_screen.dart';
-import 'package:foot_fire/features/search/data/models/player_model.dart';
+import 'package:foot_fire/features/search/data/models/search_player_model.dart';
 import 'package:foot_fire/features/search/data/models/staduim_model.dart';
 import 'package:foot_fire/features/splash/ui/splash_screen.dart';
 import 'package:foot_fire/features/league_table/logic/cubit/table_cubit.dart';
@@ -52,6 +53,10 @@ class AppRouting {
                     ),
                     BlocProvider(
                       create: (context) => getIt<TeamCubit>(),
+                    ),
+                    BlocProvider(
+                      create: (context) =>
+                          getIt<FavoritesCubit>()..getFavoritePlayers(),
                     ),
                   ],
                   child: const MainScreen(),
@@ -103,9 +108,19 @@ class AppRouting {
             builder: (context) => MatchDetailsScreen(
                   event: arg,
                 ));
+      case Routes.playerDetailsScreen:
+        final String arg = settings.arguments as String;
+
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                  create: (context) => getIt<PlayerCubit>(),
+                  child: PlayerDetailsScreen(
+                    playerID: arg,
+                  ),
+                ));
 
       case Routes.playerProfile:
-        final Player arg = settings.arguments as Player;
+        final SearchPlayer arg = settings.arguments as SearchPlayer;
 
         return MaterialPageRoute(
             builder: (context) => MultiBlocProvider(
