@@ -15,13 +15,16 @@ class ShirtsListBlocBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300.h,
-      child: BlocBuilder<TeamCubit, TeamState>(
-        builder: (context, state) {
-          if (state is TeamShirtsLoaded) {
-            return CarouselSlider.builder(
-              itemCount: state.shirtsList.length,
+    return BlocBuilder<TeamCubit, TeamState>(
+      builder: (context, state) {
+        if (state is TeamShirtsLoaded) {
+         if(state.shirtsList.isEmpty){
+          return const SizedBox.shrink();
+         }else{
+           return SizedBox(
+            height: 300.h,
+             child: CarouselSlider.builder(
+              itemCount:state.shirtsList.isNotEmpty ? state.shirtsList.length : 0 ,
               itemBuilder: (context, index, realIndex) {
                 return setShirtsListLoaded(state, index);
               },
@@ -37,12 +40,13 @@ class ShirtsListBlocBuilder extends StatelessWidget {
                 enlargeCenterPage: true,
                 enlargeFactor: 0.4,
               ),
-            );
-          } else {
-            return const ShirtShimerLoading();
-          }
-        },
-      ),
+                       ),
+           );
+         }
+        } else {
+          return const ShirtShimerLoading();
+        }
+      },
     );
   }
 }
@@ -62,11 +66,11 @@ Widget setShirtsListLoaded(state, index) {
                 decoration:
                     const BoxDecoration(color: AppColors.lightGrayColor),
                 child: const Center(
-                  child: Text("No Image Found !"),
+                  child: Text("No Shirts Found !"),
                 ),
               );
             },
-            imageUrl: state.shirtsList[index].shirtImage ?? MyImages.emptyImage,
+            imageUrl: state.shirtsList?[index].shirtImage ?? MyImages.emptyImage,
             fit: BoxFit.fill,
           ),
         ),

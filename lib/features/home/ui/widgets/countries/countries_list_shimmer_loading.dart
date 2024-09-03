@@ -16,6 +16,8 @@ class CountriesListShimmerLoading extends StatelessWidget {
           baseColor: const Color.fromARGB(255, 66, 65, 65).withOpacity(.6),
           highlightColor: Colors.grey.withOpacity(.8),
           child: Container(
+            margin: const EdgeInsetsDirectional.symmetric(
+                horizontal: 4, vertical: 8),
             padding: const EdgeInsetsDirectional.symmetric(
                 horizontal: 12, vertical: 8),
             width: double.infinity,
