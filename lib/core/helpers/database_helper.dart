@@ -12,7 +12,7 @@ class DataBaseHelper {
     if (_db == null) {
       String path = join(await getDatabasesPath(), databaseName);
       _db = await openDatabase(path,
-          version: 1, onCreate: _onCreate, onUpgrade: _onUpgrade);
+          version: 2, onCreate: _onCreate, onUpgrade: _onUpgrade);
       return _db;
     }
     return _db;
@@ -21,6 +21,7 @@ class DataBaseHelper {
   _onCreate(Database db, int version) async {
     await db.execute('''
   CREATE TABLE $favoritesTableName (  
+        id TEXT NOT NULL,
         title TEXT NOT NULL,
         sub_title TEXT NOT NULL,
         image TEXT NOT NULL,
@@ -37,6 +38,7 @@ class DataBaseHelper {
   addItemToFavorites(FavoriteItemModel item) async {
     Database clint = await db;
     await clint.insert(favoritesTableName, {
+      'id': item.id,
       'title': item.title,
       'sub_title': item.subTitle,
       'image': item.imageUrl,
@@ -47,11 +49,12 @@ class DataBaseHelper {
   Future<List<FavoriteItemModel>?> getAllFavoriteItems() async {
     Database clint = await db;
     List<Map> favoriteItems = await clint.query(favoritesTableName,
-        columns: ["title", 'sub_title', "image", 'category']);
+        columns: ['id', "title", 'sub_title', "image", 'category']);
     List<FavoriteItemModel> productsForCurrentUser = [];
     if (favoriteItems.isNotEmpty) {
       for (int i = 0; i < favoriteItems.length; i++) {
         FavoriteItemModel s = FavoriteItemModel(
+            id: favoriteItems[i]['id'],
             title: favoriteItems[i]['title'],
             subTitle: favoriteItems[i]['sub_title'],
             imageUrl: favoriteItems[i]['image'],
@@ -62,52 +65,55 @@ class DataBaseHelper {
     return productsForCurrentUser;
   }
 
-Future<List<FavoriteItemModel>?> getFavoritePlayers() async {
-  Database client = await db;
+  Future<List<FavoriteItemModel>?> getFavoritePlayers() async {
+    Database client = await db;
 
-  // Query the database to get only items where category is "player"
-  List<Map> favoritePlayers = await client.query(
-    favoritesTableName,
-    columns: ["title", "sub_title", "image", "category"],
-    where: "category = ?",
-    whereArgs: ["player"],
-  );
-
-  // Map the results to a list of FavoriteItemModel
-  List<FavoriteItemModel> favoritesPlayer = favoritePlayers.map((player) {
-    return FavoriteItemModel(
-      title: player['title'],
-      subTitle: player['sub_title'],
-      imageUrl: player['image'],
-      category: player['category'],
+    // Query the database to get only items where category is "player"
+    List<Map> favoritePlayers = await client.query(
+      favoritesTableName,
+      columns: ['id', "title", "sub_title", "image", "category"],
+      where: "category = ?",
+      whereArgs: ["player"],
     );
-  }).toList();
 
-  return favoritesPlayer;
-}
- Future<List<FavoriteItemModel>?> getFavoriteTeams() async {
-  Database client = await db;
+    // Map the results to a list of FavoriteItemModel
+    List<FavoriteItemModel> favoritesPlayer = favoritePlayers.map((player) {
+      return FavoriteItemModel(
+        id: player['id'],
+        title: player['title'],
+        subTitle: player['sub_title'],
+        imageUrl: player['image'],
+        category: player['category'],
+      );
+    }).toList();
 
-  // Query the database with a WHERE clause to filter by category "team"
-  List<Map> favoriteTeams = await client.query(
-    favoritesTableName,
-    columns: ["title", "sub_title", "image", "category"],
-    where: "category = ?",
-    whereArgs: ["team"],
-  );
+    return favoritesPlayer;
+  }
 
-  // Map the results to a list of FavoriteItemModel
-  List<FavoriteItemModel> favoritesTeams = favoriteTeams.map((team) {
-    return FavoriteItemModel(
-      title: team['title'],
-      subTitle: team['sub_title'],
-      imageUrl: team['image'],
-      category: team['category'],
+  Future<List<FavoriteItemModel>?> getFavoriteTeams() async {
+    Database client = await db;
+
+    // Query the database with a WHERE clause to filter by category "team"
+    List<Map> favoriteTeams = await client.query(
+      favoritesTableName,
+      columns: ['id',"title", "sub_title", "image", "category"],
+      where: "category = ?",
+      whereArgs: ["team"],
     );
-  }).toList();
 
-  return favoritesTeams;
-}
+    // Map the results to a list of FavoriteItemModel
+    List<FavoriteItemModel> favoritesTeams = favoriteTeams.map((team) {
+      return FavoriteItemModel(
+        id: team['id'],
+        title: team['title'],
+        subTitle: team['sub_title'],
+        imageUrl: team['image'],
+        category: team['category'],
+      );
+    }).toList();
+
+    return favoritesTeams;
+  }
 
   Future<bool> isFavoriteItem(String itemTitle) async {
     Database clint = await db;
