@@ -1,21 +1,21 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'player_model.g.dart';
+part 'search_player_model.g.dart';
 
 @JsonSerializable()
-class PlayerModel {
+class SearchPlayerModel {
   @JsonKey(name: "player")
-  List<Player>? playersList;
+  List<SearchPlayer>? playersList;
 
-  PlayerModel({this.playersList});
+  SearchPlayerModel({this.playersList});
 
-  factory PlayerModel.fromJson(Map<String, dynamic> json) =>
-      _$PlayerModelFromJson(json);
+  factory SearchPlayerModel.fromJson(Map<String, dynamic> json) =>
+      _$SearchPlayerModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PlayerModelToJson(this);
+  Map<String, dynamic> toJson() => _$SearchPlayerModelToJson(this);
 }
 
 @JsonSerializable()
-class Player {
+class SearchPlayer {
   String? idPlayer;
   String? idTeam;
   @JsonKey(name: "strNationality")
@@ -59,9 +59,8 @@ class Player {
   String? strFanart3;
   String? strFanart4;
 
-  Player(
-      {
-        this.idPlayer,
+  SearchPlayer(
+      {this.idPlayer,
       this.idTeam,
       this.playerNationality,
       this.playerName,
@@ -95,7 +94,8 @@ class Player {
       this.strFanart3,
       this.strFanart4});
 
-  factory Player.fromJson(Map<String, dynamic> json) => _$PlayerFromJson(json);
+  factory SearchPlayer.fromJson(Map<String, dynamic> json) =>
+      _$SearchPlayerFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PlayerToJson(this);
+  Map<String, dynamic> toJson() => _$SearchPlayerToJson(this);
 }

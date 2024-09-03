@@ -1,23 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'player_model.dart';
+part of 'search_player_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-PlayerModel _$PlayerModelFromJson(Map<String, dynamic> json) => PlayerModel(
+SearchPlayerModel _$SearchPlayerModelFromJson(Map<String, dynamic> json) =>
+    SearchPlayerModel(
       playersList: (json['player'] as List<dynamic>?)
-          ?.map((e) => Player.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => SearchPlayer.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$PlayerModelToJson(PlayerModel instance) =>
+Map<String, dynamic> _$SearchPlayerModelToJson(SearchPlayerModel instance) =>
     <String, dynamic>{
       'player': instance.playersList,
     };
 
-Player _$PlayerFromJson(Map<String, dynamic> json) => Player(
+SearchPlayer _$SearchPlayerFromJson(Map<String, dynamic> json) => SearchPlayer(
       idPlayer: json['idPlayer'] as String?,
       idTeam: json['idTeam'] as String?,
       playerNationality: json['strNationality'] as String?,
@@ -53,7 +54,8 @@ Player _$PlayerFromJson(Map<String, dynamic> json) => Player(
       strFanart4: json['strFanart4'] as String?,
     );
 
-Map<String, dynamic> _$PlayerToJson(Player instance) => <String, dynamic>{
+Map<String, dynamic> _$SearchPlayerToJson(SearchPlayer instance) =>
+    <String, dynamic>{
       'idPlayer': instance.idPlayer,
       'idTeam': instance.idTeam,
       'strNationality': instance.playerNationality,
