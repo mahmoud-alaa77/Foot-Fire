@@ -8,7 +8,8 @@ import 'package:foot_fire/features/league_teams/data/models/shirt_model.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
 import 'package:foot_fire/features/player_profile/data/models/career_model.dart';
 import 'package:foot_fire/features/player_profile/data/models/honour_model.dart';
-import 'package:foot_fire/features/search/data/models/player_model.dart';
+import 'package:foot_fire/features/player_profile/data/models/player_model.dart';
+import 'package:foot_fire/features/search/data/models/search_player_model.dart';
 import 'package:foot_fire/features/search/data/models/staduim_model.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -39,7 +40,8 @@ abstract class ApiServices {
       @Path("leagueName") String leagueName);
 
   @GET(ApiConstants.searchByPlayerEP)
-  Future<PlayerModel> searchByPlayer(@Path("playerName") String playerName);
+  Future<SearchPlayerModel> searchByPlayer(
+      @Path("playerName") String playerName);
 
   @GET(ApiConstants.searchByFullNameTeamEP)
   Future<TeamModel> searchByTeamFullName(
@@ -63,4 +65,8 @@ abstract class ApiServices {
 
   @GET(ApiConstants.getShirtsByTeamIdEP)
   Future<ShirtModel> getShirtsByTeamId(@Path("teamID") String teamID);
+
+  @GET(ApiConstants.getPlayerDetailsByPlayerIdEP)
+  Future<PlayerModel> getPlayerDetailsByPlayerId(
+      @Path("playerID") String playerID);
 }

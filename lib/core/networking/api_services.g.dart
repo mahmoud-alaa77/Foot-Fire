@@ -195,12 +195,12 @@ class _ApiServices implements ApiServices {
   }
 
   @override
-  Future<PlayerModel> searchByPlayer(String playerName) async {
+  Future<SearchPlayerModel> searchByPlayer(String playerName) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PlayerModel>(Options(
+    final _options = _setStreamType<SearchPlayerModel>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -217,9 +217,9 @@ class _ApiServices implements ApiServices {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PlayerModel _value;
+    late SearchPlayerModel _value;
     try {
-      _value = PlayerModel.fromJson(_result.data!);
+      _value = SearchPlayerModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -418,6 +418,39 @@ class _ApiServices implements ApiServices {
     late ShirtModel _value;
     try {
       _value = ShirtModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<PlayerModel> getPlayerDetailsByPlayerId(String playerID) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<PlayerModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/v1/json/3/lookupplayer.php?id=${playerID}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late PlayerModel _value;
+    try {
+      _value = PlayerModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
