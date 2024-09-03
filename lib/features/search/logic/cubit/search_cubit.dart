@@ -1,5 +1,5 @@
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
-import 'package:foot_fire/features/search/data/models/player_model.dart';
+import 'package:foot_fire/features/search/data/models/search_player_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foot_fire/features/search/data/models/staduim_model.dart';
 import 'package:foot_fire/features/search/data/repos/search_repo.dart';
@@ -35,14 +35,14 @@ class SearchCubit extends Cubit<SearchState> {
     result.fold((failure) {
       emit(SearchError(message: failure.errorMessage));
     }, (searchItem) {
-      List<Player> footballPlayers =
+      List<SearchPlayer> footballPlayers =
           onlyFootBallPlayer(searchItem.playersList ?? []);
       emit(SearchPlayerLoadedSuccessful(players: footballPlayers));
     });
   }
 
-  onlyFootBallPlayer(List<Player> players) {
-    List<Player> footballPlayers = [];
+  onlyFootBallPlayer(List<SearchPlayer> players) {
+    List<SearchPlayer> footballPlayers = [];
 
     for (int i = 0; i < players.length; i++) {
       if (players[i].sportName == 'Soccer') {

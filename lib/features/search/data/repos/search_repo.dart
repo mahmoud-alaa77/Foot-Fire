@@ -4,14 +4,15 @@ import 'package:foot_fire/core/errors/failure.dart';
 import 'package:foot_fire/core/errors/server_failure.dart';
 import 'package:foot_fire/core/networking/api_services.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
-import 'package:foot_fire/features/search/data/models/player_model.dart';
+import 'package:foot_fire/features/search/data/models/search_player_model.dart';
 import 'package:foot_fire/features/search/data/models/staduim_model.dart';
 
 class SearchRepo {
   final ApiServices _apiServices;
   SearchRepo(this._apiServices);
 
-  Future<Either<Failure, PlayerModel>> searchByPlayer(String playerName) async {
+  Future<Either<Failure, SearchPlayerModel>> searchByPlayer(
+      String playerName) async {
     try {
       var response = await _apiServices.searchByPlayer(playerName);
 

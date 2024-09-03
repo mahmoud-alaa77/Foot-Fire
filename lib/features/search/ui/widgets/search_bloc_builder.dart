@@ -5,8 +5,7 @@ import 'package:foot_fire/core/helpers/extentions.dart';
 import 'package:foot_fire/core/routing/routes.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
-import 'package:foot_fire/features/league_teams/logic/cubit/team_cubit.dart';
-import 'package:foot_fire/features/search/data/models/player_model.dart';
+import 'package:foot_fire/features/search/data/models/search_player_model.dart';
 import 'package:foot_fire/features/search/data/models/search_item.dart';
 import 'package:foot_fire/features/search/data/models/staduim_model.dart';
 import 'package:foot_fire/features/search/logic/cubit/search_cubit.dart';
@@ -88,7 +87,7 @@ class SearchBlocBuilder extends StatelessWidget {
         : ListView.builder(
             itemCount: state.players?.length ?? 0,
             itemBuilder: (context, index) {
-              final Player player = state.players![index];
+              final SearchPlayer player = state.players![index];
               return SearchCardItem(
                 onTap: () {
                   context.pushNamed(Routes.playerProfile, arguments: player);

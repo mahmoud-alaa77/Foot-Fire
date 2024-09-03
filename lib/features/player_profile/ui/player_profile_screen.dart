@@ -10,10 +10,10 @@ import 'package:foot_fire/features/favorites/data/models/favorite_item_mode.dart
 import 'package:foot_fire/features/player_profile/ui/widgets/main_details_container.dart';
 import 'package:foot_fire/features/player_profile/ui/widgets/player_career.dart';
 import 'package:foot_fire/features/player_profile/ui/widgets/player_houner.dart';
-import 'package:foot_fire/features/search/data/models/player_model.dart';
+import 'package:foot_fire/features/search/data/models/search_player_model.dart';
 
 class PlayerProfileScreen extends StatelessWidget {
-  final Player player;
+  final SearchPlayer player;
   const PlayerProfileScreen({super.key, required this.player});
 
   @override
@@ -28,6 +28,7 @@ class PlayerProfileScreen extends StatelessWidget {
           children: [
             TopImageContainer(
               favoriteItem: FavoriteItemModel(
+                  id: player.idPlayer ?? "",
                   title: player.playerName ?? "",
                   subTitle: player.teamName ?? "",
                   imageUrl: player.strThumb ??

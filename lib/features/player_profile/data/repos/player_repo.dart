@@ -5,6 +5,8 @@ import 'package:foot_fire/core/errors/server_failure.dart';
 import 'package:foot_fire/core/networking/api_services.dart';
 import 'package:foot_fire/features/player_profile/data/models/career_model.dart';
 import 'package:foot_fire/features/player_profile/data/models/honour_model.dart';
+import 'package:foot_fire/features/player_profile/data/models/player_model.dart';
+import 'package:foot_fire/features/search/data/models/search_player_model.dart';
 
 class PlayerRepo {
   final ApiServices _apiServices;
@@ -26,7 +28,7 @@ class PlayerRepo {
     }
   }
 
-Future<Either<Failure, CareerModel>> getPlayerCareerByPlayerID(
+  Future<Either<Failure, CareerModel>> getPlayerCareerByPlayerID(
       String playerId) async {
     try {
       var response = await _apiServices.getPlayerCareerByPlayerId(playerId);
@@ -41,4 +43,18 @@ Future<Either<Failure, CareerModel>> getPlayerCareerByPlayerID(
     }
   }
 
+  Future<Either<Failure, PlayerModel>> getPlayerDetailsByPlayerID(
+      String playerID) async {
+    try {
+      var response = await _apiServices.getPlayerDetailsByPlayerId(playerID);
+
+      return right(response);
+    } catch (error) {
+      if (error is DioException) {
+        return left(ServerFailure.fromDioError(error));
+      } else {
+        return left(Failure(error.toString()));
+      }
+    }
+  }
 }

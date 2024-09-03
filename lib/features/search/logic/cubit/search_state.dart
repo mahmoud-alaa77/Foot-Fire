@@ -7,7 +7,7 @@ final class SearchInitial extends SearchState {}
 final class SearchLoading extends SearchState {}
 
 final class SearchPlayerLoadedSuccessful extends SearchState {
-  final List<Player>? players;
+  final List<SearchPlayer>? players;
 
   SearchPlayerLoadedSuccessful({required this.players});
 }
@@ -17,7 +17,6 @@ final class SearchTeamLoadedSuccessful extends SearchState {
 
   SearchTeamLoadedSuccessful({required this.teamModel});
 }
-
 
 final class SearchStaduimLoadedSuccessful extends SearchState {
   final List<dynamic>? staduimList;

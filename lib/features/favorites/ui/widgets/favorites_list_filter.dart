@@ -15,7 +15,8 @@ class FavoritesListFilter extends StatefulWidget {
 }
 
 class _FavoritesListFilterState extends State<FavoritesListFilter> {
-  void _updateFilter({required bool all, required bool team, required bool player}) {
+  void _updateFilter(
+      {required bool all, required bool team, required bool player}) {
     final cubit = context.read<FavoritesCubit>();
     setState(() {
       cubit.filterAllItemsButton = all;
@@ -31,14 +32,16 @@ class _FavoritesListFilterState extends State<FavoritesListFilter> {
       cubit.getFavoritePlayers();
     }
 
-    
-      ScaffoldMessenger.of(context).showSnackBar(
-         SnackBar(
-          content:  Center(child:  Text("⬅Pull horizontally to delete➡",style: AppTextStyles.font12WhiteW300,)),
-          backgroundColor: AppColors.lightGrayColor.withOpacity(.1),
-        ),
-      );
-    
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Center(
+            child: Text(
+          "⬅Pull horizontally to delete➡",
+          style: AppTextStyles.font12WhiteW300,
+        )),
+        backgroundColor: AppColors.lightGrayColor.withOpacity(.1),
+      ),
+    );
   }
 
   Widget _buildFilterButton(String title, bool isActive, VoidCallback onTap) {

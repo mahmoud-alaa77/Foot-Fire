@@ -40,6 +40,7 @@ class _TeamScreenDetailsState extends State<TeamScreenDetails> {
             children: [
               TopImageContainer(
                 favoriteItem: FavoriteItemModel(
+                  id: widget.team.idTeam ??'',
                     title: widget.team.teamName ?? "",
                     subTitle: widget.team.strCountry ?? "",
                     imageUrl: widget.team.strBadge ??

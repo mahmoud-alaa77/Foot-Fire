@@ -5,8 +5,8 @@ import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/theming/app_text_styles.dart';
 import 'package:foot_fire/features/home/logic/cubit/country_cubit.dart';
 import 'package:foot_fire/features/home/logic/cubit/league_cubit.dart';
-import 'package:foot_fire/features/home/ui/widgets/countries_list_shimmer_loading.dart';
-import 'package:foot_fire/features/home/ui/widgets/country_list_item.dart';
+import 'package:foot_fire/features/home/ui/widgets/countries/countries_list_shimmer_loading.dart';
+import 'package:foot_fire/features/home/ui/widgets/countries/country_list_item.dart';
 
 class AllCountriesScreen extends StatelessWidget {
   const AllCountriesScreen({

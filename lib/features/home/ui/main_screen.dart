@@ -34,6 +34,9 @@ class _MainScreenState extends State<MainScreen> {
   void _onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
+      if (_currentIndex == 0) {
+        context.read<FavoritesCubit>().getFavoritePlayers();
+      }
     });
   }
 

@@ -3,10 +3,9 @@ import 'package:foot_fire/core/helpers/helper_functions.dart';
 import 'package:foot_fire/core/theming/app_colors.dart';
 import 'package:foot_fire/core/widgets/custom_divider.dart';
 import 'package:foot_fire/features/player_profile/ui/widgets/key_and_value_column.dart';
-import 'package:foot_fire/features/search/data/models/player_model.dart';
 
 class MainDetailsContainer extends StatelessWidget {
-  final Player player;
+  final dynamic player;
   const MainDetailsContainer({super.key, required this.player});
 
   @override
@@ -30,7 +29,9 @@ class MainDetailsContainer extends StatelessWidget {
                   keyText: "Country",
                   valueText: player.playerNationality ?? "--"),
               KeyAndValueColumn(
-                  keyText: player.dateBorn ?? "--", valueText: "${HelperFunctions().calculateAge(player.dateBorn?? "--").toString()} Year"),
+                  keyText: player.dateBorn ?? "--",
+                  valueText:
+                      "${HelperFunctions().calculateAge(player.dateBorn ?? "--").toString()} Year"),
               KeyAndValueColumn(
                   keyText: "Status", valueText: player.strStatus ?? "--"),
             ],
@@ -58,7 +59,9 @@ class MainDetailsContainer extends StatelessWidget {
                   keyText: "Weight", valueText: player.strWeight ?? '--'),
               KeyAndValueColumn(
                   keyText: "Height",
-                  valueText:player.strHeight!.length > 5 ? player.strHeight?.substring(0, 6) ?? "--" : player.strHeight.toString()) ,
+                  valueText: player.strHeight!.length > 5
+                      ? player.strHeight?.substring(0, 6) ?? "--"
+                      : player.strHeight.toString()),
             ],
           ),
         ],
