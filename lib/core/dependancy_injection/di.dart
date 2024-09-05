@@ -12,6 +12,8 @@ import 'package:foot_fire/features/league_table/data/repos/table_repo.dart';
 import 'package:foot_fire/features/league_table/logic/cubit/table_cubit.dart';
 import 'package:foot_fire/features/league_teams/data/repos/team_repo.dart';
 import 'package:foot_fire/features/league_teams/logic/cubit/team_cubit.dart';
+import 'package:foot_fire/features/news/data/repo/news_repo.dart';
+import 'package:foot_fire/features/news/logic/cubit/news_cubit.dart';
 import 'package:foot_fire/features/player_profile/data/repos/player_repo.dart';
 import 'package:foot_fire/features/player_profile/logic/cubit/player_cubit.dart';
 import 'package:foot_fire/features/search/data/repos/search_repo.dart';
@@ -73,6 +75,11 @@ Future<void> setupGetIt() async {
 
   getIt.registerLazySingleton<FavoritesRepo>(() => FavoritesRepo(getIt()));
   getIt.registerFactory<FavoritesCubit>(() => FavoritesCubit(getIt()));
+
+  //news
+
+  getIt.registerLazySingleton<NewsRepo>(() => NewsRepo(getIt()));
+  getIt.registerFactory<NewsCubit>(() => NewsCubit(getIt()));
 }
 
 Dio createAndSetUpDio() {
