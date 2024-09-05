@@ -66,7 +66,10 @@ dependencies:
   toast: ^0.3.0
   # A carousel slider widget, support infinite scroll and custom child widget.
   carousel_slider: ^5.0.0
+  # for convert date
   intl: ^0.19.0
+  # for provides a WebView widget backed by the system webview.
+  webview_flutter: ^4.9.0
   #Flutter plugin for SQLite, a self-contained, high-reliability, embedded, SQL database engine
   sqflite: ^2.3.3+1
 
