@@ -16,6 +16,8 @@ import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
 import 'package:foot_fire/features/league_teams/logic/cubit/team_cubit.dart';
 import 'package:foot_fire/features/league_teams/ui/team_screen_details.dart';
 import 'package:foot_fire/features/match_details/ui/match_details_screen.dart';
+import 'package:foot_fire/features/news/data/repo/news_model.dart';
+import 'package:foot_fire/features/news/ui/widgets/news_page_view.dart';
 import 'package:foot_fire/features/player_profile/logic/cubit/player_cubit.dart';
 import 'package:foot_fire/features/player_profile/ui/player_profile_screen.dart';
 import 'package:foot_fire/features/search/data/models/search_player_model.dart';
@@ -144,6 +146,13 @@ class AppRouting {
         return MaterialPageRoute(
             builder: (context) => StadiumDetailsScreen(
                   staduim: arg,
+                ));
+      case Routes.newsDetailsPageView:
+        final Article arg = settings.arguments as Article;
+
+        return MaterialPageRoute(
+            builder: (context) => NewsPageView(
+                  article: arg,
                 ));
       case Routes.allCountriesScreen:
         return MaterialPageRoute(

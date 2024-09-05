@@ -9,6 +9,7 @@ class Routes {
   static const String allCountriesScreen = "/all_cuntries";
   static const String matchDetailsScreen = "/match_details";
   static const String playerDetailsScreen = "/player_details";
+  static const String newsDetailsPageView = "/news_details";
 
 
 }
