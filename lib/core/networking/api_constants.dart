@@ -1,5 +1,5 @@
 class ApiConstants {
-  static const String apiBaseUrl = 'https://www.thesportsdb.com';
+  static const String footballApiBaseUrl = 'https://www.thesportsdb.com';
   static const String allCountriesEP = "/api/v1/json/3/all_countries.php";
   static const String allLeaguesEP =
       "/api/v1/json/3/search_all_leagues.php?c={countryName}";
@@ -29,4 +29,9 @@ class ApiConstants {
       "/api/v1/json/3/lookupequipment.php?id={teamID}";
   static const String getPlayerDetailsByPlayerIdEP =
       "/api/v1/json/3/lookupplayer.php?id={playerID}";
+
+  // for news features
+  static const String newsApiBaseUrl =
+      'https://gnews.io/api/v4/top-headlines?category=sports&q=football&q=Soccer&apikey=$newsApiKey';
+  static const String newsApiKey = 'e19eaf493bf0c85069c44110430c83bf';
 }

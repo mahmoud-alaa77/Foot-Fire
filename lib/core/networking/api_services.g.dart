@@ -458,6 +458,40 @@ class _ApiServices implements ApiServices {
     return _value;
   }
 
+  @override
+  Future<NewsModel> getNews(String? keyWord) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'q': keyWord};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<NewsModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'https://gnews.io/api/v4/top-headlines?category=sports&q=football&q=Soccer&apikey=e19eaf493bf0c85069c44110430c83bf',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late NewsModel _value;
+    try {
+      _value = NewsModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

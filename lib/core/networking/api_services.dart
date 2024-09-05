@@ -6,6 +6,7 @@ import 'package:foot_fire/features/league_matches/data/models/match_model.dart';
 import 'package:foot_fire/features/league_table/data/models/table_model.dart';
 import 'package:foot_fire/features/league_teams/data/models/shirt_model.dart';
 import 'package:foot_fire/features/league_teams/data/models/team_model.dart';
+import 'package:foot_fire/features/news/data/repo/news_model.dart';
 import 'package:foot_fire/features/player_profile/data/models/career_model.dart';
 import 'package:foot_fire/features/player_profile/data/models/honour_model.dart';
 import 'package:foot_fire/features/player_profile/data/models/player_model.dart';
@@ -16,7 +17,7 @@ import 'package:retrofit/http.dart';
 
 part 'api_services.g.dart';
 
-@RestApi(baseUrl: ApiConstants.apiBaseUrl)
+@RestApi(baseUrl: ApiConstants.footballApiBaseUrl)
 abstract class ApiServices {
   factory ApiServices(Dio dio, {String baseUrl}) = _ApiServices;
 
@@ -69,4 +70,8 @@ abstract class ApiServices {
   @GET(ApiConstants.getPlayerDetailsByPlayerIdEP)
   Future<PlayerModel> getPlayerDetailsByPlayerId(
       @Path("playerID") String playerID);
+
+  @GET(ApiConstants.newsApiBaseUrl)
+  Future<NewsModel> getNews(
+       @Query("q") String? keyWord);
 }
