@@ -19,8 +19,7 @@ class FootFireApp extends StatelessWidget {
               useMaterial3: true,
               primaryColor: AppColors.orangeColor,
               bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-                backgroundColor: AppColors.darkGrayColor
-              ),
+                  backgroundColor: AppColors.darkGrayColor),
               fontFamily: "Margarine",
               brightness: Brightness.dark),
           initialRoute: Routes.splashScreen,

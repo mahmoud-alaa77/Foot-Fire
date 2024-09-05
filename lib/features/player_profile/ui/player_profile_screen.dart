@@ -35,8 +35,12 @@ class PlayerProfileScreen extends StatelessWidget {
                       player.strCutout ??
                       MyImages.unKnownPersonImage,
                   category: "player"),
-              bannerUrl:
-                  player.strBanner ?? player.strFanart1 ?? MyImages.emptyImage,
+              bannerUrl: player.strBanner ??
+                  player.strFanart1 ??
+                  player.strFanart2 ??
+                  player.strFanart3 ??
+                  player.strThumb ??
+                  MyImages.emptyImage,
               logoUrl: player.strCutout ??
                   player.strThumb ??
                   MyImages.unKnownPersonImage,
